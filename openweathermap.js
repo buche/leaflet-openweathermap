@@ -483,20 +483,20 @@ L.OWM.ProgressControl = L.Control.extend({
 
 	initialize: function(options) {
 		L.Util.setOptions(this, options);
-	},
-
-	onAdd: function(map) {
 		this._container = L.DomUtil.create('div', 'leaflet-control-layers');
-		this.options.owmInstance.on('owmloadingstart', this._activate, this);
-		this.options.owmInstance.on('owmloadingend', this._deactivate, this);
 		if (this.options.bgImage != null) {
 			this._container.style.backgroundImage ='url(' + this.options.bgImage + ')';
 			this._container.style.backgroundRepeat = 'no-repeat';
 			this._container.style.backgroundPosition = 'center center';
 		}
 		L.DomEvent.disableClickPropagation(this._container);
-		this._map = map;
 		this._container.innerHTML = '<img src="' + this.options.imageLoadingUrl + '" width="50" height="50" />';
+	},
+
+	onAdd: function(map) {
+		this._map = map;
+		this.options.owmInstance.on('owmloadingstart', this._activate, this);
+		this.options.owmInstance.on('owmloadingend', this._deactivate, this);
 		return this._container;
 	},
 
@@ -516,6 +516,7 @@ L.OWM.ProgressControl = L.Control.extend({
 		this.options.owmInstance.off('owmloadingstart', this._activate, this);
 		this.options.owmInstance.off('owmloadingend', this._deactivate, this);
 		this._container.style.display = 'none';
+		this._map = null;
 	}
 
 });
