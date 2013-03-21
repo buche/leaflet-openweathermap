@@ -79,6 +79,13 @@ An example can be seen here: http://map.comlu.com/openweathermap/
 
 Here are the most important lines:
 
+```html
+<head>
+	<link rel="stylesheet" type="text/css" href="openweathermap.css" />
+	<script type="text/javascript" src="openweathermap.js"></script>
+</head>
+```
+
 ```js
 var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 18, attribution: '[insert correct attribution here!]' });
