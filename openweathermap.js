@@ -121,7 +121,7 @@ L.OWM.Current = L.Class.extend({
 		this._tempUnits = { K: 'K', C: '°C', F: 'F'};
 		this._progressCtrl = null;
 		if (this.options.progressControl == 'true') {
-			var bgIcon = this.options.imageUrlCity.replace('{icon}', '02d');
+			var bgIcon = this.options.imageUrlCity.replace('{icon}', '10d');
 			if (this.options.type != 'city') {
 				var bgIcon = this.options.imageUrlStation;
 			}
@@ -670,7 +670,7 @@ L.OWM.Utils = {
 		//	, id522: 'Heavy Intensity Shower Rain'
 
 			, id600: 'Leichter Schneefall'
-			, id601: 'Schnee'
+			, id601: 'Mäßiger Schneefall'
 			, id602: 'Starker Schneefall'
 			, id611: 'Schneeregen'
 			, id621: 'Schneeschauer'
@@ -682,14 +682,16 @@ L.OWM.Utils = {
 			, id731: 'Sand-/Staubwirbel'
 			, id741: 'Nebel'
 
-			, id800: 'Heiter'
+			, id800: 'Wolkenlos'
+			, id800d: 'Sonnig' // id800 at day
+			, id800n: 'Klar' // id800 at night
 			, id801: 'Leicht bewölkt'
-			, id802: 'Vereinzelte Wolken'
-			, id803: 'Bewölkt'
+			, id802: 'Wolkig'
+			, id803: 'Stark bewölkt'
 			, id804: 'Bedeckt'
 			, id900: 'Tornado'
 			, id901: 'Tropischer Sturm'
-			, id902: 'Hurrikan'
+			, id902: 'Orkan'
 			, id903: 'Kälte'
 			, id904: 'Hitze'
 			, id905: 'Windig'
@@ -771,7 +773,7 @@ L.OWM.Utils = {
 			, temp_minmax: 'Temp. min/max'
 			, wind: 'Vent'
 			, gust: 'Rafales'
-			, windforce: 'Force'
+			, windforce: 'Force du vent'
 			, direction: 'Direction'
 			, rain_1h: 'Pluie'
 			, humidity: 'Humidité'
