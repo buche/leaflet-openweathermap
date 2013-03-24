@@ -91,7 +91,8 @@ L.OWM.Current = L.Class.extend({
 		temperatureDigits: 1,
 		speedUnit: 'ms', // available: 'ms' (m/s), 'kmh' (km/h), 'mph' (mph)
 		speedDigits: 0,
-		popup: true, // available: 'true', 'false'
+		popup: 'true', // available: 'true', 'false'
+		keepPopup: 'true', // available: 'true', 'false'
 		showOwmStationLink: 'true', // available: 'true', 'false'
 		showWindSpeed: 'both', // available: 'speed', 'beaufort', 'both'
 		showWindDirection: 'both', // available: 'deg', 'desc', 'both'
@@ -115,6 +116,8 @@ L.OWM.Current = L.Class.extend({
 		this._layer = L.layerGroup();
 		this._timeoutId = null;
 		this._requests = {};
+		this._markers = new Array();
+		this._markedMarker = null;
 		this._map = null;
 		this._urlTemplate = 'http://api.openweathermap.org/data/2.1/find/{type}?bbox={minlon},{minlat},{maxlon},{maxlat},10';
 		this._directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
@@ -203,7 +206,6 @@ L.OWM.Current = L.Class.extend({
 		// fetch data from OWM
 		this._requests[this.options.type] = L.OWM.Utils.jsonp(url, function(data) {
 			delete _this._requests[_this.options.type];
-			//_this.fire('owmloadingstart', {type: _this.options.type});
 
 			// read all stations/cities
 			var stations = {};
@@ -218,22 +220,36 @@ L.OWM.Current = L.Class.extend({
 			}
 
 			// hide LayerGroup from map and remove old markers
+			var markerWithPopup = null;
+			if (_this.options.keepPopup == 'true') {
+				markerWithPopup = _this._getMarkerWithPopup(_this._markers);
+			}
 			if (_this._map && _this._map.hasLayer(_this._layer)) {
 				_this._map.removeLayer(_this._layer);
 			}
 			_this._layer.clearLayers();
 
 			// add the stations/cities as markers to the LayerGroup
+			_this._markers = new Array();
 			for (var key in stations) {
 				var marker = _this._createMarker(stations[key]);
 				_this._layer.addLayer(marker);
-				if (_this.options.popup) {
+				_this._markers.push(marker);
+				if (_this.options.popup == 'true') {
 					marker.bindPopup(_this._createPopup(stations[key]));
+				}
+				if (markerWithPopup != null
+						&& typeof markerWithPopup.options.owmId != 'undefined'
+						&& markerWithPopup.options.owmId == marker.options.owmId) {
+					markerWithPopup = marker;
 				}
 			}
 
 			// add the LayerGroup to the map
 			_this._map.addLayer(_this._layer);
+			if (markerWithPopup != null) {
+				markerWithPopup.openPopup();
+			}
 			_this.fire('owmloadingend', {type: _this.options.type});
 		});
 		if (this.options.intervall && this.options.intervall > 0) {
@@ -241,8 +257,19 @@ L.OWM.Current = L.Class.extend({
 		}
 	},
 
+	_getMarkerWithPopup: function(markers) {
+		var marker = null;
+		for (var idx in markers) {
+			var m = markers[idx];
+			if (m._popup && m._map && m._map.hasLayer(m._popup)) {
+				marker = m;
+				break;
+			}
+		}
+		return marker;
+	},
+
 	_createPopup: function(station) {
-		//console.info('station', station);
 		var showLink = typeof station.id != 'undefined' && this.options.showOwmStationLink == 'true';
 		var txt = '<div class="owm-popup-name">';
 		if (showLink) {
@@ -385,7 +412,7 @@ L.OWM.Current = L.Class.extend({
 						, popupAnchor: new L.Point(0, -10)
 						, html: this._icondivtext(station, imageData.url, imageData.width, imageData.height)
 					});
-		var marker = L.marker([station.coord.lat, station.coord.lon], {icon: icon});
+		var marker = L.marker([station.coord.lat, station.coord.lon], {icon: icon, owmId: station.id});
 		return marker;
 	},
 

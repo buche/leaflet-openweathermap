@@ -57,6 +57,7 @@ A lot of *options* are available to configure the behaviour of the city/station 
 * *speedUnit*: **'ms'**, 'kmh' or 'mph'. Unit of wind speed (m/s, km/h or mph).
 * *speedDigits*: Number ( **0** ). Number of decimal places for wind speed.
 * *popup*: **'true'** or 'false'. Whether to bind a popup to the city/station marker.
+* *keepPopup*: **'true'** or 'false'. When 'true' tries to reopen an already open popup on move or reload. Can result in a map move (after reopening the popup) with closing and reopening the popup once again.
 * *showOwmStationLink*: **'true'** or 'false'. Whether to link city/station name to OWM.
 * *showWindSpeed*: 'speed', 'beaufort' or **'both'**. Show wind speed as speed in speedUnit or in beaufort scala or both.
 * *showWindDirection*: 'deg', 'desc' or **'both'**. Show wind direction as degree, as description (e.g. NNE) or both.
