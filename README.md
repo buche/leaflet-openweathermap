@@ -81,8 +81,8 @@ Here are the most important lines:
 
 ```html
 <head>
-	<link rel="stylesheet" type="text/css" href="openweathermap.css" />
-	<script type="text/javascript" src="openweathermap.js"></script>
+	<link rel="stylesheet" type="text/css" href="leaflet-openweathermap.css" />
+	<script type="text/javascript" src="leaflet-openweathermap.js"></script>
 </head>
 ```
 
