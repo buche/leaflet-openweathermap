@@ -96,6 +96,7 @@ L.OWM.Current = L.Class.extend({
 		showWindSpeed: 'both', // available: 'speed', 'beaufort', 'both'
 		showWindDirection: 'both', // available: 'deg', 'desc', 'both'
 		showTimestamp: 'true', // available: 'true', 'false'
+		showTempMinMax: 'true', // available: 'true', 'false'
 		useLocalTime: 'true', // available: 'true', 'false'
 		clusterSize: 150,
 		imageUrlCity: 'http://openweathermap.org/img/w/{icon}.png',
@@ -284,14 +285,16 @@ L.OWM.Current = L.Class.extend({
 					+ this.i18n('pressure', 'Pressure')
 					+ ': ' + station.main.pressure + '&nbsp;hPa</div>';
 			}
-			if (typeof station.main.temp_max != 'undefined' && typeof station.main.temp_min != 'undefined') {
-				txt += '<div class="owm-popup-detail">'
-					+ this.i18n('temp_minmax', 'Temp. min/max')
-					+ ': '
-					+ this._temperatureConvert(station.main.temp_min)
-					+ '&nbsp;/&nbsp;'
-					+ this._temperatureConvert(station.main.temp_max)
-					+ '&nbsp;' + this._tempUnits[this.options.temperatureUnit] + '</div>';
+			if (this.options.showTempMinMax == 'true') {
+				if (typeof station.main.temp_max != 'undefined' && typeof station.main.temp_min != 'undefined') {
+					txt += '<div class="owm-popup-detail">'
+						+ this.i18n('temp_minmax', 'Temp. min/max')
+						+ ': '
+							+ this._temperatureConvert(station.main.temp_min)
+						+ '&nbsp;/&nbsp;'
+						+ this._temperatureConvert(station.main.temp_max)
+						+ '&nbsp;' + this._tempUnits[this.options.temperatureUnit] + '</div>';
+				}
 			}
 		}
 		if (typeof station.rain != 'undefined' && typeof station.rain['1h'] != 'undefined') {

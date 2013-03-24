@@ -61,6 +61,7 @@ A lot of *options* are available to configure the behaviour of the city/station 
 * *showWindSpeed*: 'speed', 'beaufort' or **'both'**. Show wind speed as speed in speedUnit or in beaufort scala or both.
 * *showWindDirection*: 'deg', 'desc' or **'both'**. Show wind direction as degree, as description (e.g. NNE) or both.
 * *showTimestamp*: **'true'** or 'false'. Whether to show the timestamp of the data.
+* *showTempMinMax*: **'true'** or 'false'. Whether to show temperature min/max.
 * *useLocalTime*: **'true'** or false. Whether to use local time or UTC for the timestamp.
 * *clusterSize*: Number ( **150** ). If some stations are too close to each other, they are hidden. In an area of the size clusterSize pixels * clusterSize pixels only one city or one station is allowed.
 * *imageUrlCity*: URL ( **'http://openweathermap.org/img/w/{icon}.png'** ). URL template for weather condition images of cities. {icon} will be replaced by the icon property of city's data. See http://openweathermap.org/img/w/ for some standard images.
