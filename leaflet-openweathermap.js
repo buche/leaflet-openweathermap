@@ -7,10 +7,32 @@ L.OWM = L.TileLayer.extend({
 	baseUrl: "http://{s}.tile.openweathermap.org/map/{layername}/{z}/{x}/{y}.png",
 	options: {
 		maxZoom: 18,
+		showLegend: 'true',
+		legendImagePath: null,
+		legendPosition: 'bottomright',
 		attribution: 'Weather from <a href="http://openweathermap.org/" alt="World Map and worldwide Weather Forecast online">OpenWeatherMap</a>'
 	},
+
 	initialize: function (options) {
+		L.Util.setOptions(this, options);
+		this._legend = null;
 		L.TileLayer.prototype.initialize.call(this, this._owmtileurl, options);
+	},
+
+	onAdd: function(map) {
+		if (this.options.showLegend == 'true' && this.options.legendImagePath != null) {
+			this._legend = new L.OWM.LegendControl({legendImagePath: this.options.legendImagePath});
+			map.addControl(this._legend);
+		}
+		L.TileLayer.prototype.onAdd.call(this, map);
+	},
+
+	onRemove: function(map) {
+		if (this._legend != null) {
+			map.removeControl(this._legend);
+			this._legend = null;
+		}
+		L.TileLayer.prototype.onRemove.call(this, map);
 	}
 });
 
@@ -24,7 +46,13 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.PrecipitationClassic = L.OWM.extend({
 		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'precipitation_cls')
 	});
-	L.OWM.precipitationClassic = function (options) { return new L.OWM.PrecipitationClassic(options); };
+	L.OWM.precipitationClassic = function (options) {
+		var layer = new L.OWM.PrecipitationClassic(options);
+		if (layer.options.legendImagePath == null) {
+			layer.options.legendImagePath = 'http://openweathermap.org/img/a/PR.png';
+		}
+		return layer;
+	};
 
 	L.OWM.Rain = L.OWM.extend({
 		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'rain')
@@ -34,7 +62,13 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.RainClassic = L.OWM.extend({
 		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'rain_cls')
 	});
-	L.OWM.rainClassic = function (options) { return new L.OWM.RainClassic(options); };
+	L.OWM.rainClassic = function (options) {
+		var layer = new L.OWM.RainClassic(options);
+		if (layer.options.legendImagePath == null) {
+			layer.options.legendImagePath = 'http://openweathermap.org/img/a/RN.png';
+		}
+		return layer;
+	};
 
 	L.OWM.Snow = L.OWM.extend({
 		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'snow')
@@ -49,12 +83,24 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.CloudsClassic = L.OWM.extend({
 		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'clouds_cls')
 	});
-	L.OWM.cloudsClassic = function (options) { return new L.OWM.CloudsClassic(options); };
+	L.OWM.cloudsClassic = function (options) {
+		var layer = new L.OWM.CloudsClassic(options);
+		if (layer.options.legendImagePath == null) {
+			layer.options.legendImagePath = 'http://openweathermap.org/img/a/NT.png';
+		}
+		return layer;
+	};
 
 	L.OWM.Pressure = L.OWM.extend({
 		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'pressure')
 	});
-	L.OWM.pressure = function (options) { return new L.OWM.Pressure(options); };
+	L.OWM.pressure = function (options) {
+		var layer = new L.OWM.Pressure(options);
+		if (layer.options.legendImagePath == null) {
+			layer.options.legendImagePath = 'http://openweathermap.org/img/a/P0.png';
+		}
+		return layer;
+	};
 
 	L.OWM.PressureContour = L.OWM.extend({
 		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'pressure_cntr')
@@ -72,6 +118,22 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.wind = function (options) { return new L.OWM.Wind(options); };
 
 }());
+
+L.OWM.LegendControl = L.Control.extend({
+	options: {
+		position: "bottomright"
+	},
+
+	initialize: function(options) {
+		L.Util.setOptions(this, options);
+		this._container = L.DomUtil.create('div', 'leaflet-control');
+		this._container.innerHTML = '<img src="' + this.options.legendImagePath + '" border="0" />';
+	},
+
+	onAdd: function(map) {
+		return this._container;
+	}
+});
 
 /**
  * Layer for current weather (cities and stations).

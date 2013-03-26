@@ -11,11 +11,11 @@ Feel free to flattr me if you like it: [![alttext](http://api.flattr.com/button/
 
 This code is licensed under [CC0](http://creativecommons.org/publicdomain/zero/1.0/ "Creative Commons Zero - Public Domain").
 
-## Usage
-
-### Using TileLayers
+## Using TileLayers
 
 OWM offers some TileLayers: Clouds, Clouds Classic, Precipitation, Precipitation Classic, Rain, Rain Classic, Snow, Temperature, Wind Speed, Pressure and Pressure Contours.
+
+### Initializing TileLayers
 
 Here's how to initialize these TileLayers:
 
@@ -31,18 +31,28 @@ Here's how to initialize these TileLayers:
 * var temp = L.OWM.temperature();
 * var wind = L.OWM.wind();
 
-### Using current data for cities and stations
+### Options for TileLayers
+
+Beyond standard options for Leaflet TileLayers there are additional ones:
+
+* *showLegend*: **'true'** or 'false'. If 'true' and option 'legendImagePath' is set there will be a legend image on the map.
+* *legendImagePath*: URL (set to a default image for for some layers, **null** for others). URL or relative path to an image which is a legend to this layer.
+* *legendPosition*: **'bottomright'**. Position of the legend image on the map. Available are standard positions for Leaflet controls ('topright', 'topleft', 'bottomright', 'bottomleft').
+
+Out of th box a legend image is only available for Pressure, Precipitation Classic, Clouds Classic and Rain Classic. Please add your own image if you need it.
+
+## Using current data for cities and stations
 
 Weather data for cities and stations are fetched using the OpenWeatherMap API. They are added as a LayerGroup of markers, one for cities and another one for stations. These layers can be refreshed every *n* minutes (set *n* with the option *intervall*).
 
-#### Initialization
+### Initialization
 
 Here's how to initialize these dynamically created layers:
 
 * var city = L.OWM.current( /* options */ );
 * var station = L.OWM.current({type: 'station' /*, additional options */ });
 
-#### Options
+### Options
 
 A lot of *options* are available to configure the behaviour of the city/station data ( **default value** is bold):
 
@@ -92,7 +102,7 @@ Here are the most important lines:
 var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 18, attribution: '[insert correct attribution here!]' });
 
-var clouds = L.OWM.clouds();
+var clouds = L.OWM.clouds({showLegend: 'false', opacity: 0.5});
 var city = L.OWM.current({intervall: 5, lang: 'de'});
 
 var map = L.map('map', {
