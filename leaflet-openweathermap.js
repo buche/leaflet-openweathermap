@@ -4,70 +4,70 @@
  */
 
 L.OWM = L.TileLayer.extend({
-  baseUrl: "http://{s}.tile.openweathermap.org/map/{layername}/{z}/{x}/{y}.png",
+	baseUrl: "http://{s}.tile.openweathermap.org/map/{layername}/{z}/{x}/{y}.png",
 	options: {
 		maxZoom: 18,
 		attribution: 'Weather from <a href="http://openweathermap.org/" alt="World Map and worldwide Weather Forecast online">OpenWeatherMap</a>'
 	},
 	initialize: function (options) {
-		L.TileLayer.prototype.initialize.call(this, this.url, options);
+		L.TileLayer.prototype.initialize.call(this, this._owmtileurl, options);
 	}
 });
 
 (function () {
 
 	L.OWM.Precipitation = L.OWM.extend({
-		url: L.OWM.prototype.baseUrl.replace('{layername}', 'precipitation')
+		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'precipitation')
 	});
 	L.OWM.precipitation = function (options) { return new L.OWM.Precipitation(options); };
 
 	L.OWM.PrecipitationClassic = L.OWM.extend({
-		url: L.OWM.prototype.baseUrl.replace('{layername}', 'precipitation_cls')
+		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'precipitation_cls')
 	});
 	L.OWM.precipitationClassic = function (options) { return new L.OWM.PrecipitationClassic(options); };
 
 	L.OWM.Rain = L.OWM.extend({
-		url: L.OWM.prototype.baseUrl.replace('{layername}', 'rain')
+		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'rain')
 	});
 	L.OWM.rain = function (options) { return new L.OWM.Rain(options); };
 
 	L.OWM.RainClassic = L.OWM.extend({
-		url: L.OWM.prototype.baseUrl.replace('{layername}', 'rain_cls')
+		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'rain_cls')
 	});
 	L.OWM.rainClassic = function (options) { return new L.OWM.RainClassic(options); };
 
 	L.OWM.Snow = L.OWM.extend({
-		url: L.OWM.prototype.baseUrl.replace('{layername}', 'snow')
+		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'snow')
 	});
 	L.OWM.snow = function (options) { return new L.OWM.Snow(options); };
 
 	L.OWM.Clouds = L.OWM.extend({
-		url: L.OWM.prototype.baseUrl.replace('{layername}', 'clouds')
+		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'clouds')
 	});
 	L.OWM.clouds = function (options) { return new L.OWM.Clouds(options); };
 
 	L.OWM.CloudsClassic = L.OWM.extend({
-		url: L.OWM.prototype.baseUrl.replace('{layername}', 'clouds_cls')
+		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'clouds_cls')
 	});
 	L.OWM.cloudsClassic = function (options) { return new L.OWM.CloudsClassic(options); };
 
 	L.OWM.Pressure = L.OWM.extend({
-		url: L.OWM.prototype.baseUrl.replace('{layername}', 'pressure')
+		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'pressure')
 	});
 	L.OWM.pressure = function (options) { return new L.OWM.Pressure(options); };
 
 	L.OWM.PressureContour = L.OWM.extend({
-		url: L.OWM.prototype.baseUrl.replace('{layername}', 'pressure_cntr')
+		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'pressure_cntr')
 	});
 	L.OWM.pressureContour = function (options) { return new L.OWM.PressureContour(options); };
 
 	L.OWM.Temperature = L.OWM.extend({
-		url: L.OWM.prototype.baseUrl.replace('{layername}', 'temp')
+		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'temp')
 	});
 	L.OWM.temperature = function (options) { return new L.OWM.Temperature(options); };
 
 	L.OWM.Wind = L.OWM.extend({
-		url: L.OWM.prototype.baseUrl.replace('{layername}', 'wind')
+		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'wind')
 	});
 	L.OWM.wind = function (options) { return new L.OWM.Wind(options); };
 
