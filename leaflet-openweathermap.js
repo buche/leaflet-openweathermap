@@ -207,10 +207,18 @@ L.OWM.Current = L.Class.extend({
 		this._requests[this.options.type] = L.OWM.Utils.jsonp(url, function(data) {
 			delete _this._requests[_this.options.type];
 
+			if (!_this._map) {
+				// Nothing to do if layer is gone but this request is still active
+				return;
+			}
+
 			// read all stations/cities
 			var stations = {};
 			for (var i=0, len=data.list.length; i<len; i++) {
 				var stat = data.list[i];
+				if (!_this._map) { // maybe layer is gone while we are looping here
+					return;
+				}
 				// only use stations/cities having a minimum pixes distance on the map
 				var pt = _this._map.latLngToLayerPoint(new L.LatLng(stat.coord.lat, stat.coord.lon));
 				var key = '' + (Math.round(pt.x/_this.options.clusterSize)) + "_" + (Math.round(pt.y/_this.options.clusterSize));
@@ -246,7 +254,7 @@ L.OWM.Current = L.Class.extend({
 			}
 
 			// add the LayerGroup to the map
-			_this._map.addLayer(_this._layer);
+			_this._map && _this._map.addLayer(_this._layer);
 			if (markerWithPopup != null) {
 				markerWithPopup.openPopup();
 			}
