@@ -35,8 +35,8 @@ Here's how to initialize these TileLayers:
 
 Beyond standard options for Leaflet TileLayers there are additional ones:
 
-* *showLegend*: **'true'** or 'false'. If 'true' and option 'legendImagePath' is set there will be a legend image on the map.
-* *legendImagePath*: URL (set to a default image for for some layers, **null** for others). URL or relative path to an image which is a legend to this layer.
+* *showLegend*: **true** or false. If true and option 'legendImagePath' is set there will be a legend image on the map.
+* *legendImagePath*: URL (set to a default image for some layers, **null** for others). URL or relative path to an image which is a legend to this layer.
 * *legendPosition*: **'bottomright'**. Position of the legend image on the map. Available are standard positions for Leaflet controls ('topright', 'topleft', 'bottomright', 'bottomleft').
 
 Out of th box a legend image is only available for Pressure, Precipitation Classic, Clouds Classic and Rain Classic. Please add your own image if you need it.
@@ -60,20 +60,20 @@ A lot of *options* are available to configure the behaviour of the city/station 
 * *lang*: **'en'**, 'de', 'ru', 'fr'. Language of popup texts. Note: not every translation is finished yet.
 * *minZoom*: Number ( **7** ). Minimal zoom level for fetching city/station data. Use smaller values only at your own risk.
 * *intervall*: number ( **0** ). Time in minutes to reload city or station data.
-* *progressControl*: **'true'** or 'false'. Whether a progress control should be used to tell the user that data is being loaded at the moment.
+* *progressControl*: **true** or false. Whether a progress control should be used to tell the user that data is being loaded at the moment.
 * *imageLoadingUrl*: URL ( **'owmloading.gif'** ). URL of the loading image, or a path relative to the HTML document. This is important when the image is not in the same directory as the HTML document!
 * *temperatureUnit*: **'C'**, 'F', 'K'. Display temperature in Celsius, Fahrenheit or Kelvin.
 * *temperatureDigits*: Number ( **1** ). Number of decimal places for temperature.
 * *speedUnit*: **'ms'**, 'kmh' or 'mph'. Unit of wind speed (m/s, km/h or mph).
 * *speedDigits*: Number ( **0** ). Number of decimal places for wind speed.
-* *popup*: **'true'** or 'false'. Whether to bind a popup to the city/station marker.
-* *keepPopup*: **'true'** or 'false'. When 'true' tries to reopen an already open popup on move or reload. Can result in a map move (after reopening the popup) with closing and reopening the popup once again.
-* *showOwmStationLink*: **'true'** or 'false'. Whether to link city/station name to OWM.
+* *popup*: **true** or false. Whether to bind a popup to the city/station marker.
+* *keepPopup*: **true** or false. When true it tries to reopen an already open popup on move or reload. Can result in an additional map move (after reopening the popup) with closing and reopening the popup once again.
+* *showOwmStationLink*: **true** or false. Whether to link city/station name to OWM.
 * *showWindSpeed*: 'speed', 'beaufort' or **'both'**. Show wind speed as speed in speedUnit or in beaufort scala or both.
 * *showWindDirection*: 'deg', 'desc' or **'both'**. Show wind direction as degree, as description (e.g. NNE) or both.
-* *showTimestamp*: **'true'** or 'false'. Whether to show the timestamp of the data.
-* *showTempMinMax*: **'true'** or 'false'. Whether to show temperature min/max.
-* *useLocalTime*: **'true'** or false. Whether to use local time or UTC for the timestamp.
+* *showTimestamp*: **true** or false. Whether to show the timestamp of the data.
+* *showTempMinMax*: **true** or false. Whether to show temperature min/max.
+* *useLocalTime*: **true** or false. Whether to use local time or UTC for the timestamp.
 * *clusterSize*: Number ( **150** ). If some stations are too close to each other, they are hidden. In an area of the size clusterSize pixels * clusterSize pixels only one city or one station is allowed.
 * *imageUrlCity*: URL ( **'http://openweathermap.org/img/w/{icon}.png'** ). URL template for weather condition images of cities. {icon} will be replaced by the icon property of city's data. See http://openweathermap.org/img/w/ for some standard images.
 * *imageWidth*: Number ( **50** ). Width of city's weather condition image.
@@ -102,13 +102,12 @@ Here are the most important lines:
 var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 18, attribution: '[insert correct attribution here!]' });
 
-var clouds = L.OWM.clouds({showLegend: 'false', opacity: 0.5});
+var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5});
 var city = L.OWM.current({intervall: 5, lang: 'de'});
 
 var map = L.map('map', {
-	center: new L.LatLng(51.5, 10),
-	zoom: 10,
-	layers: [osm, city]
+	center: new L.LatLng(51.5, 10), zoom: 10,
+	layers: [osm]
 });
 
 var baseMaps = { "OSM Standard": osm };

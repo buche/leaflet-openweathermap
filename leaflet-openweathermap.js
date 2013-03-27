@@ -7,7 +7,7 @@ L.OWM = L.TileLayer.extend({
 	baseUrl: "http://{s}.tile.openweathermap.org/map/{layername}/{z}/{x}/{y}.png",
 	options: {
 		maxZoom: 18,
-		showLegend: 'true',
+		showLegend: true,
 		legendImagePath: null,
 		legendPosition: 'bottomright',
 		attribution: 'Weather from <a href="http://openweathermap.org/" alt="World Map and worldwide Weather Forecast online">OpenWeatherMap</a>'
@@ -20,7 +20,7 @@ L.OWM = L.TileLayer.extend({
 	},
 
 	onAdd: function(map) {
-		if (this.options.showLegend == 'true' && this.options.legendImagePath != null) {
+		if (this.options.showLegend && this.options.legendImagePath != null) {
 			this._legend = new L.OWM.LegendControl({legendImagePath: this.options.legendImagePath});
 			map.addControl(this._legend);
 		}
@@ -147,20 +147,20 @@ L.OWM.Current = L.Class.extend({
 		lang: 'en', // available: 'en', 'de', 'ru', 'fr' (not every laguage is finished yet)
 		minZoom: 7,
 		intervall: 0, // intervall for rereading city/station data in minutes
-		progressControl: 'true', // available: 'true', 'false'
+		progressControl: true, // available: true, false
 		imageLoadingUrl: 'owmloading.gif', // URl of loading image relative to HTML document
 		temperatureUnit: 'C', // available: 'K' (Kelvin), 'C' (Celsius), 'F' (Fahrenheit)
 		temperatureDigits: 1,
 		speedUnit: 'ms', // available: 'ms' (m/s), 'kmh' (km/h), 'mph' (mph)
 		speedDigits: 0,
-		popup: 'true', // available: 'true', 'false'
-		keepPopup: 'true', // available: 'true', 'false'
-		showOwmStationLink: 'true', // available: 'true', 'false'
+		popup: true, // available: true, false
+		keepPopup: true, // available: true, false
+		showOwmStationLink: true, // available: true, false
 		showWindSpeed: 'both', // available: 'speed', 'beaufort', 'both'
 		showWindDirection: 'both', // available: 'deg', 'desc', 'both'
-		showTimestamp: 'true', // available: 'true', 'false'
-		showTempMinMax: 'true', // available: 'true', 'false'
-		useLocalTime: 'true', // available: 'true', 'false'
+		showTimestamp: true, // available: true, false
+		showTempMinMax: true, // available: true, false
+		useLocalTime: true, // available: true, false
 		clusterSize: 150,
 		imageUrlCity: 'http://openweathermap.org/img/w/{icon}.png',
 		imageWidth: 50,
@@ -186,7 +186,7 @@ L.OWM.Current = L.Class.extend({
 		this._msbft = [0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 31.7]; // Beaufort scala
 		this._tempUnits = { K: 'K', C: '°C', F: 'F'};
 		this._progressCtrl = null;
-		if (this.options.progressControl == 'true') {
+		if (this.options.progressControl) {
 			var bgIcon = this.options.imageUrlCity.replace('{icon}', '10d');
 			if (this.options.type != 'city') {
 				var bgIcon = this.options.imageUrlStation;
@@ -291,7 +291,7 @@ L.OWM.Current = L.Class.extend({
 
 			// hide LayerGroup from map and remove old markers
 			var markerWithPopup = null;
-			if (_this.options.keepPopup == 'true') {
+			if (_this.options.keepPopup) {
 				markerWithPopup = _this._getMarkerWithPopup(_this._markers);
 			}
 			if (_this._map && _this._map.hasLayer(_this._layer)) {
@@ -305,7 +305,7 @@ L.OWM.Current = L.Class.extend({
 				var marker = _this._createMarker(stations[key]);
 				_this._layer.addLayer(marker);
 				_this._markers.push(marker);
-				if (_this.options.popup == 'true') {
+				if (_this.options.popup) {
 					marker.bindPopup(_this._createPopup(stations[key]));
 				}
 				if (markerWithPopup != null
@@ -340,7 +340,7 @@ L.OWM.Current = L.Class.extend({
 	},
 
 	_createPopup: function(station) {
-		var showLink = typeof station.id != 'undefined' && this.options.showOwmStationLink == 'true';
+		var showLink = typeof station.id != 'undefined' && this.options.showOwmStationLink;
 		var txt = '<div class="owm-popup-name">';
 		if (showLink) {
 			var typ = 'station';
@@ -382,7 +382,7 @@ L.OWM.Current = L.Class.extend({
 					+ this.i18n('pressure', 'Pressure')
 					+ ': ' + station.main.pressure + '&nbsp;hPa</div>';
 			}
-			if (this.options.showTempMinMax == 'true') {
+			if (this.options.showTempMinMax) {
 				if (typeof station.main.temp_max != 'undefined' && typeof station.main.temp_min != 'undefined') {
 					txt += '<div class="owm-popup-detail">'
 						+ this.i18n('temp_minmax', 'Temp. min/max')
@@ -446,7 +446,7 @@ L.OWM.Current = L.Class.extend({
 				txt += '</div>';
 			}
 		}
-		if (typeof station.dt != 'undefined' && this.options.showTimestamp == 'true') {
+		if (typeof station.dt != 'undefined' && this.options.showTimestamp) {
 			txt += '<div class="owm-popup-timestamp">';
 			txt += '(' + this._convertTimestamp(station.dt) + ')';
 			txt += '</div>';
@@ -552,7 +552,7 @@ L.OWM.Current = L.Class.extend({
 	},
 
 	_convertTimestamp: function(tstmp) {
-		if (this.options.useLocalTime == 'true') {
+		if (this.options.useLocalTime) {
 			return (new Date(tstmp*1000));
 		} else {
 			return (new Date(tstmp*1000)).toUTCString();
@@ -718,6 +718,7 @@ L.OWM.Utils = {
 			, id802: 'Scattered Clouds'
 			, id803: 'Broken Clouds'
 			, id804: 'Overcast Clouds'
+
 			, id900: 'Tornado'
 			, id901: 'Tropical Storm'
 			, id902: 'Hurricane'
@@ -789,6 +790,7 @@ L.OWM.Utils = {
 			, id802: 'Wolkig' // 'Scattered Clouds'
 			, id803: 'Stark bewölkt' // 'Broken Clouds'
 			, id804: 'Bedeckt' // 'Overcast Clouds'
+
 			, id900: 'Tornado' // 'Tornado'
 			, id901: 'Tropischer Sturm' // 'Tropical Storm'
 			, id902: 'Orkan' // 'Hurricane'
@@ -858,6 +860,7 @@ L.OWM.Utils = {
 		//	, id802: 'Scattered Clouds'
 		//	, id803: 'Broken Clouds'
 		//	, id804: 'Overcast Clouds'
+
 		//	, id900: 'Tornado'
 		//	, id901: 'Tropical Storm'
 			, id902: 'Ураган' // 'Hurricane'
@@ -927,6 +930,7 @@ L.OWM.Utils = {
 		//	, id802: 'Scattered Clouds'
 		//	, id803: 'Broken Clouds'
 		//	, id804: 'Overcast Clouds'
+
 			, id900: 'Tornade' // 'Tornado'
 		//	, id901: 'Tropical Storm'
 			, id902: 'Ouragan' // 'Hurricane'
