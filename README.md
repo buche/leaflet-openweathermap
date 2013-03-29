@@ -37,7 +37,7 @@ Beyond standard options for Leaflet TileLayers there are additional ones:
 
 * *showLegend*: **true** or false. If true and option 'legendImagePath' is set there will be a legend image on the map.
 * *legendImagePath*: URL (set to a default image for some layers, **null** for others). URL or relative path to an image which is a legend to this layer.
-* *legendPosition*: **'bottomright'**. Position of the legend image on the map. Available are standard positions for Leaflet controls ('topright', 'topleft', 'bottomright', 'bottomleft').
+* *legendPosition*: **'bottomleft'**. Position of the legend images on the map. Available are standard positions for Leaflet controls ('topright', 'topleft', 'bottomright', 'bottomleft').
 
 Out of th box a legend image is only available for Pressure, Precipitation Classic, Clouds Classic and Rain Classic. Please add your own image if you need it.
 
