@@ -9,30 +9,43 @@ L.OWM = L.TileLayer.extend({
 		maxZoom: 18,
 		showLegend: true,
 		legendImagePath: null,
-		legendPosition: 'bottomright',
+		legendPosition: 'bottomleft',
 		attribution: 'Weather from <a href="http://openweathermap.org/" alt="World Map and worldwide Weather Forecast online">OpenWeatherMap</a>'
 	},
 
 	initialize: function (options) {
 		L.Util.setOptions(this, options);
-		this._legend = null;
+		this._map = null;
+		this._legendControl = null;
+		this._legendId = null;
 		L.TileLayer.prototype.initialize.call(this, this._owmtileurl, options);
 	},
 
 	onAdd: function(map) {
+		this._map = map;
 		if (this.options.showLegend && this.options.legendImagePath != null) {
-			this._legend = new L.OWM.LegendControl({legendImagePath: this.options.legendImagePath});
-			map.addControl(this._legend);
+			this._legendControl = this._getLegendControl();
+			this._legendId = this._legendControl.addLegend(this.options.legendImagePath);
 		}
 		L.TileLayer.prototype.onAdd.call(this, map);
 	},
 
 	onRemove: function(map) {
-		if (this._legend != null) {
-			map.removeControl(this._legend);
-			this._legend = null;
+		if (this._legendControl != null) {
+			this._legendControl.removeLegend(this._legendId);
+			this._legendControl = null;
+			this._legendId = null;
 		}
 		L.TileLayer.prototype.onRemove.call(this, map);
+		this._map = null;
+	},
+
+	_getLegendControl: function() {
+		if (typeof this._map._owm_legendcontrol == 'undefined' || !this._map._owm_legendcontrol) {
+			this._map._owm_legendcontrol = new L.OWM.LegendControl({position: this.options.legendPosition});
+			this._map.addControl(this._map._owm_legendcontrol);
+		}
+		return this._map._owm_legendcontrol;
 	}
 });
 
@@ -121,17 +134,61 @@ L.OWM = L.TileLayer.extend({
 
 L.OWM.LegendControl = L.Control.extend({
 	options: {
-		position: "bottomright"
+		position: "bottomleft"
 	},
 
 	initialize: function(options) {
 		L.Util.setOptions(this, options);
-		this._container = L.DomUtil.create('div', 'leaflet-control');
-		this._container.innerHTML = '<img src="' + this.options.legendImagePath + '" border="0" />';
+		this._container = L.DomUtil.create('div', 'owm-legend-container');
+		this._container.style.display = 'none';
+		this._legendCounter = 0;
+		this._legendContainer = new Array();
 	},
 
 	onAdd: function(map) {
 		return this._container;
+	},
+
+	addLegend: function(legendImagePath) {
+		var legendId = this._legendCounter++;
+		this._legendContainer[legendId] = legendImagePath;
+		this._redrawLegend();
+		this._container.style.display = 'block';
+		return legendId;
+	},
+
+	removeLegend: function(legendId) {
+		if (typeof this._legendContainer[legendId] != 'undefined') {
+			delete this._legendContainer[legendId];
+		}
+		// reset counter if no legend is in collection
+		var containerEmpty = true;
+		for (var idx in this._legendContainer) {
+			containerEmpty = false;
+			break;
+		}
+		if (containerEmpty) {
+			this._legendCounter = 0;
+			this._container.style.display = 'none';
+		}
+		this._redrawLegend();
+	},
+
+	_redrawLegend: function() {
+		this._container.innerHTML = ''; // clear container
+		var isLeft = this.options.position.indexOf('left') !== -1;
+		var cssFloat = isLeft ? 'left' : 'right';
+		for (var idx in this._legendContainer) {
+			var imgPath = this._legendContainer[idx];
+			var item = L.DomUtil.create('div', 'owm-legend-item', this._container);
+			item.style.cssFloat = cssFloat;
+			if (isLeft) {
+				item.style.marginRight = '10px';
+			} else {
+				item.style.marginLeft = '10px';
+			}
+			item.innerHTML = '<img src="' + imgPath + '" border="0" />';
+		}
 	}
 });
 

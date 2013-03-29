@@ -1,5 +1,5 @@
 .owm-icondiv {
-  width: 50px;
+	width: 50px;
 	opacity: 0.7;
 	text-align: center;
 	background-color: lightgray;
@@ -61,3 +61,5 @@
 	padding-top: 0.5em;
 }
 
+.owm-legend-item {
+}
