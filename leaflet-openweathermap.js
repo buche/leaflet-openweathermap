@@ -239,7 +239,7 @@ L.OWM.Current = L.Class.extend({
 		this._markedMarker = null;
 		this._map = null;
 		this._urlTemplate = 'http://api.openweathermap.org/data/2.1/find/{type}?bbox={minlon},{minlat},{maxlon},{maxlat},10';
-		this._directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+		this._directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW', 'N'];
 		this._msbft = [0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 31.7]; // Beaufort scala
 		this._tempUnits = { K: 'K', C: '°C', F: 'F'};
 		this._progressCtrl = null;
