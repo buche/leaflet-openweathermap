@@ -1,6 +1,7 @@
 /**
- * A JavaScript library for using OWM's layers and OWM's city/station data for leaflet based maps without hassle.
- * License: CC0
+ * A JavaScript library for using OpenWeatherMap's layers and OWM's city/station data for leaflet based maps without hassle.
+ * License: CC0 (Creative Commons Zero), see http://creativecommons.org/publicdomain/zero/1.0/
+ * Project page: https://github.com/buche/leaflet-openweathermap/
  */
 
 L.OWM = L.TileLayer.extend({
