@@ -242,7 +242,7 @@ L.OWM.Current = L.Class.extend({
 		this._map = null;
 		this._urlTemplate = 'http://api.openweathermap.org/data/2.1/find/{type}?{appId}bbox={minlon},{minlat},{maxlon},{maxlat},10';
 		this._directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW', 'N'];
-		this._msbft = [0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 31.7]; // Beaufort scala
+		this._msbft = [0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7, 37.0, 41.5, 46.2, 51.0, 56.1, 61.3]; // Beaufort scala
 		this._tempUnits = { K: 'K', C: '°C', F: 'F'};
 		this._progressCtrl = null;
 		if (this.options.progressControl) {
@@ -580,7 +580,7 @@ L.OWM.Current = L.Class.extend({
 	},
 
 	_windMsToBft: function(ms) {
-		var bft = 99;
+		var bft = 18;
 		for (var key in this._msbft) {
 			if (ms < this._msbft[key]) {
 				bft = key;
