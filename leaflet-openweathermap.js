@@ -918,7 +918,7 @@ L.OWM.Utils = {
 		//	, id803: 'Broken Clouds'
 		//	, id804: 'Overcast Clouds'
 
-		//	, id900: 'Tornado'
+			, id900: 'Торнадо' // 'Tornado'
 		//	, id901: 'Tropical Storm'
 			, id902: 'Ураган' // 'Hurricane'
 		//	, id903: 'Cold'
@@ -939,7 +939,7 @@ L.OWM.Utils = {
 			, humidity: 'Humidité'
 			, pressure: 'Pression'
 
-		// weather conditions, see http://openweathermap.org/wiki/API/Weather_Condition_Codes
+		// Les conditions météorologiques, voir http://openweathermap.org/wiki/API/Weather_Condition_Codes
 		//	, id200: 'Thunderstorm with Light Rain'
 		//	, id201: 'Thunderstorm with Rain'
 		//	, id202: 'Thunderstorm with Heavy Rain'
