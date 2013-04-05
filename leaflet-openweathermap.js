@@ -341,7 +341,7 @@ L.OWM.Current = L.Class.extend({
 				if (!_this._map) { // maybe layer is gone while we are looping here
 					return;
 				}
-				// only use stations/cities having a minimum pixes distance on the map
+				// only use stations/cities having a minimum distance of some pixels on the map
 				var pt = _this._map.latLngToLayerPoint(new L.LatLng(stat.coord.lat, stat.coord.lon));
 				var key = '' + (Math.round(pt.x/_this.options.clusterSize)) + "_" + (Math.round(pt.y/_this.options.clusterSize));
 				if (!stations[key] || parseInt(stations[key].rang) < parseInt(stat.rang)) {
@@ -427,7 +427,7 @@ L.OWM.Current = L.Class.extend({
 				+ '" height="' + imgData.height + '" border="0" />';
 		if (typeof station.main != 'undefined' && typeof station.main.temp != 'undefined') {
 			txt += '<span class="owm-popup-temp">' + this._temperatureConvert(station.main.temp)
-				+ '&nbsp;' + this._tempUnits[this.options.temperatureUnit] + '</span>';
+				+ '&nbsp;' + this._displayTemperatureUnit() + '</span>';
 		}
 		txt += '</div>';
 		txt += '<div class="owm-popup-details">';
@@ -450,7 +450,7 @@ L.OWM.Current = L.Class.extend({
 							+ this._temperatureConvert(station.main.temp_min)
 						+ '&nbsp;/&nbsp;'
 						+ this._temperatureConvert(station.main.temp_max)
-						+ '&nbsp;' + this._tempUnits[this.options.temperatureUnit] + '</div>';
+						+ '&nbsp;' + this._displayTemperatureUnit() + '</div>';
 				}
 			}
 		}
@@ -552,26 +552,31 @@ L.OWM.Current = L.Class.extend({
 			+ '<img src="' + imageurl + '" border="0" width="' + width + '" height="' + height + '" />';
 		if (typeof station.main != 'undefined' && typeof station.main.temp != 'undefined') {
 			txt += '<div class="owm-icondiv-temp">' + this._temperatureConvert(station.main.temp)
-				+ '&nbsp;' + this._tempUnits[this.options.temperatureUnit] + '</div>';
+				+ '&nbsp;' + this._displayTemperatureUnit() + '</div>';
 		}
 		txt += '</div>';
 		return txt;
 	},
 
 	_temperatureConvert: function(tempK) {
-		var temp;
+		var temp = tempK;
 		switch (this.options.temperatureUnit) {
-			case 'K':
-				temp = tempK.toFixed(this.options.temperatureDigits);
-				break;
 			case 'C':
-				temp = L.OWM.Utils.temperatureKtoC(tempK, this.options.temperatureDigits);
+				temp = (tempK-273.15);
 				break;
 			case 'F':
-				temp = L.OWM.Utils.temperatureKtoF(tempK, this.options.temperatureDigits);
+				temp = (tempK*1.8-459.67);
 				break;
 		}
-		return temp;
+		return temp.toFixed(this.options.temperatureDigits);
+	},
+
+	_displayTemperatureUnit: function() {
+		var unit = this._tempUnits['K'];
+		if (typeof this._tempUnits[this.options.temperatureUnit] != 'undefined') {
+			unit = this._tempUnits[this.options.temperatureUnit];
+		}
+		return unit;
 	},
 
 	_windMsToBft: function(ms) {
@@ -707,14 +712,6 @@ L.OWM.Utils = {
 		elem.type = 'text/javascript';
 		document.getElementsByTagName('body')[0].appendChild(elem);
 		return { abort: abort };
-	},
-
-	temperatureKtoC: function(tempK, digits) {
-		return (tempK-273.15).toFixed(digits);
-	},
-
-	temperatureKtoF: function(tempK, digits) {
-		return (tempK*1.8-459.67).toFixed(digits);
 	},
 
 	i18n: {
