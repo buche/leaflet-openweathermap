@@ -43,7 +43,7 @@ Out of th box a legend image is only available for Pressure, Precipitation Class
 
 ## Using current data for cities and stations
 
-Weather data for cities and stations are fetched using the OpenWeatherMap API. They are added as a LayerGroup of markers, one for cities and another one for stations. These layers can be refreshed every *n* minutes (set *n* with the option *intervall*).
+Weather data for cities and stations are fetched using the OpenWeatherMap API. They are added as a LayerGroup of markers, one for cities and another one for stations. These layers can be refreshed every *n* minutes (set *n* with the option *intervall* but do not use less than 10 minutes, please).
 
 ### Initialization
 
@@ -87,6 +87,8 @@ A lot of *options* are available to configure the behaviour of the city/station 
 * *imageHeightStation*: Number ( **25** ). Height of image for station type unequal to 1.
 * *markerFunction*: Function ( **null** ). User defined function for marker creation. Needs one parameter for station data.
 * *popupFunction*: Function ( **null** ). User defined function for popup creation. Needs one parameter for station data.
+* *caching*: **true** or false. Use caching of current weather data. Cached data is reloaded when it is too old or the new bounding box doesn't fit inside the cached bounding box.
+* *cacheMaxAge*: Number ( **15** ). Maximum age in minutes for cached data before it is considered as too old.
 
 ## Simple Example 
 
@@ -107,7 +109,7 @@ var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 18, attribution: '[insert correct attribution here!]' });
 
 var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5});
-var city = L.OWM.current({intervall: 5, lang: 'de'});
+var city = L.OWM.current({intervall: 15, lang: 'de'});
 
 var map = L.map('map', { center: new L.LatLng(51.5, 10), zoom: 10, layers: [osm] });
 var baseMaps = { "OSM Standard": osm };
@@ -147,7 +149,7 @@ var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 18, attribution: '[insert correct attribution here!]' });
 
 var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5});
-var city = L.OWM.current({intervall: 5, lang: 'de',
+var city = L.OWM.current({intervall: 15, lang: 'de',
 			markerFunction: myOwmMarker, popupFunction: myOwmPopup});
 
 var map = L.map('map', { center: new L.LatLng(51.5, 10), zoom: 10, layers: [osm] });

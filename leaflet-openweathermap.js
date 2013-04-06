@@ -231,7 +231,9 @@ L.OWM.Current = L.Class.extend({
 		imageWidthPlane: 25,
 		imageHeightPlane: 25,
 		markerFunction: null, // user defined function for marker creation
-		popupFunction: null // user defined function for popup creation
+		popupFunction: null, // user defined function for popup creation
+		caching: true, // use caching of current weather data
+		cacheMaxAge: 15 // maximum age of cache content in minutes before it gets invalidated
 	},
 
 	initialize: function(options) {
@@ -259,6 +261,7 @@ L.OWM.Current = L.Class.extend({
 					, owmInstance: this
 			});
 		}
+		this._cache = L.OWM.currentCache({ maxAge: this.options.cacheMaxAge });
 	},
 
 	onAdd: function(map) {
@@ -287,6 +290,7 @@ L.OWM.Current = L.Class.extend({
 		this._map.removeLayer(this._layer);
 		this._layer.clearLayers();
 		this._map = null;
+		this._cache.clear();
 	},
 
 	getAttribution: function() {
@@ -302,15 +306,6 @@ L.OWM.Current = L.Class.extend({
 		}
 
 		var _this = this;
-		var bounds = this._map.getBounds();
-		var url = this._urlTemplate
-					.replace('{appId}', this.options.appId ? 'APPID=' + this.options.appId + '&' : '')
-					.replace('{type}', this.options.type)
-					.replace('{minlon}', bounds.getWest())
-					.replace('{minlat}', bounds.getSouth())
-					.replace('{maxlon}', bounds.getEast())
-					.replace('{maxlat}', bounds.getNorth())
-					;
 
 		// clear requests for all types
 		for (var typ in this._requests) {
@@ -319,83 +314,110 @@ L.OWM.Current = L.Class.extend({
 			request.abort();
 		}
 		this._requests = {};
-		_this.fire('owmloadingstart', {type: _this.options.type});
 
 		if (this._map.getZoom() < this.options.minZoom) {
-			_this.fire('owmloadingend', {type: _this.options.type});
+			this.fire('owmloadingend', {type: _this.options.type});
 			// Info to user?
 			return;
 		}
 
-		// fetch data from OWM
-		this._requests[this.options.type] = L.OWM.Utils.jsonp(url, function(data) {
-			delete _this._requests[_this.options.type];
+		// try to get cached data first
+		var bounds = this._map.getBounds();
+		var data = null;
+		if (this.options.caching) {
+			data = this._cache.get(bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth());
+		}
+		if (data !== null) {
+			// using cached data
+			this._processRequestedData(this, data);
+		} else {
+			// fetch new data from OWM
+			this.fire('owmloadingstart', {type: _this.options.type});
+			var url = this._urlTemplate
+						.replace('{appId}', this.options.appId ? 'APPID=' + this.options.appId + '&' : '')
+						.replace('{type}', this.options.type)
+						.replace('{minlon}', bounds.getWest())
+						.replace('{minlat}', bounds.getSouth())
+						.replace('{maxlon}', bounds.getEast())
+						.replace('{maxlat}', bounds.getNorth())
+						;
+			this._requests[this.options.type] = L.OWM.Utils.jsonp(url, function(data) {
+				delete _this._requests[_this.options.type];
 
-			if (!_this._map) {
-				// Nothing to do if layer is gone but this request is still active
-				return;
-			}
-
-			// read all stations/cities
-			var stations = {};
-			for (var i=0, len=data.list.length; i<len; i++) {
-				var stat = data.list[i];
-				if (!_this._map) { // maybe layer is gone while we are looping here
+				if (!_this._map) {
+					// Nothing to do if layer is gone but this request is still active
 					return;
 				}
-				// only use stations/cities having a minimum distance of some pixels on the map
-				var pt = _this._map.latLngToLayerPoint(new L.LatLng(stat.coord.lat, stat.coord.lon));
-				var key = '' + (Math.round(pt.x/_this.options.clusterSize)) + "_" + (Math.round(pt.y/_this.options.clusterSize));
-				if (!stations[key] || parseInt(stations[key].rang) < parseInt(stat.rang)) {
-					stations[key] = stat;
-				}
-			}
 
-			// hide LayerGroup from map and remove old markers
-			var markerWithPopup = null;
-			if (_this.options.keepPopup) {
-				markerWithPopup = _this._getMarkerWithPopup(_this._markers);
-			}
-			if (_this._map && _this._map.hasLayer(_this._layer)) {
-				_this._map.removeLayer(_this._layer);
-			}
-			_this._layer.clearLayers();
-
-			// add the stations/cities as markers to the LayerGroup
-			_this._markers = new Array();
-			for (var key in stations) {
-				var marker;
-				if (_this.options.markerFunction != null && typeof _this.options.markerFunction == 'function') {
-					marker = _this.options.markerFunction.call(_this, stations[key]);
-				} else {
-					marker = _this._createMarker(stations[key]);
+				if (_this.options.caching) {
+					_this._cache.set(data, _this._map.getBounds());
 				}
-				marker.options.owmId = stations[key].id;
-				_this._layer.addLayer(marker);
-				_this._markers.push(marker);
-				if (_this.options.popup) {
-					if (_this.options.popupFunction != null && typeof _this.options.popupFunction == 'function') {
-						marker.bindPopup(_this.options.popupFunction.call(_this, stations[key]));
-					} else {
-						marker.bindPopup(_this._createPopup(stations[key]));
-					}
-				}
-				if (markerWithPopup != null
-						&& typeof markerWithPopup.options.owmId != 'undefined'
-						&& markerWithPopup.options.owmId == marker.options.owmId) {
-					markerWithPopup = marker;
-				}
-			}
-
-			// add the LayerGroup to the map
-			_this._map && _this._map.addLayer(_this._layer);
-			if (markerWithPopup != null) {
-				markerWithPopup.openPopup();
-			}
-			_this.fire('owmloadingend', {type: _this.options.type});
-		});
+				_this._processRequestedData(_this, typeof data.list == 'undefined' ? new Array() : data.list);
+				_this.fire('owmloadingend', {type: _this.options.type});
+			});
+		}
 		if (this.options.intervall && this.options.intervall > 0) {
 			this._timeoutId = window.setTimeout(function() {_this.update()}, 60000*this.options.intervall);
+		}
+	},
+
+	_processRequestedData: function(_this, data) {
+
+		// read all stations/cities
+		var stations = {};
+		for (var i in data) {
+			var stat = data[i];
+			if (!_this._map) { // maybe layer is gone while we are looping here
+				return;
+			}
+			// only use stations/cities having a minimum distance of some pixels on the map
+			var pt = _this._map.latLngToLayerPoint(new L.LatLng(stat.coord.lat, stat.coord.lon));
+			var key = '' + (Math.round(pt.x/_this.options.clusterSize)) + "_" + (Math.round(pt.y/_this.options.clusterSize));
+			if (!stations[key] || parseInt(stations[key].rang) < parseInt(stat.rang)) {
+				stations[key] = stat;
+			}
+		}
+
+		// hide LayerGroup from map and remove old markers
+		var markerWithPopup = null;
+		if (_this.options.keepPopup) {
+			markerWithPopup = _this._getMarkerWithPopup(_this._markers);
+		}
+		if (_this._map && _this._map.hasLayer(_this._layer)) {
+			_this._map.removeLayer(_this._layer);
+		}
+		_this._layer.clearLayers();
+
+		// add the stations/cities as markers to the LayerGroup
+		_this._markers = new Array();
+		for (var key in stations) {
+			var marker;
+			if (_this.options.markerFunction != null && typeof _this.options.markerFunction == 'function') {
+				marker = _this.options.markerFunction.call(_this, stations[key]);
+			} else {
+				marker = _this._createMarker(stations[key]);
+			}
+			marker.options.owmId = stations[key].id;
+			_this._layer.addLayer(marker);
+			_this._markers.push(marker);
+			if (_this.options.popup) {
+				if (_this.options.popupFunction != null && typeof _this.options.popupFunction == 'function') {
+					marker.bindPopup(_this.options.popupFunction.call(_this, stations[key]));
+				} else {
+					marker.bindPopup(_this._createPopup(stations[key]));
+				}
+			}
+			if (markerWithPopup != null
+					&& typeof markerWithPopup.options.owmId != 'undefined'
+					&& markerWithPopup.options.owmId == marker.options.owmId) {
+				markerWithPopup = marker;
+			}
+		}
+
+		// add the LayerGroup to the map
+		_this._map && _this._map.addLayer(_this._layer);
+		if (markerWithPopup != null) {
+			markerWithPopup.openPopup();
 		}
 	},
 
@@ -698,6 +720,67 @@ L.OWM.ProgressControl = L.Control.extend({
 
 });
 L.OWM.progressControl = function(options) { return new L.OWM.ProgressControl(options); };
+
+L.OWM.CurrentCache = L.Class.extend({
+
+	options: {
+		maxAge: 15 // age in minutes before cache data is invalidated
+	},
+
+	initialize: function(options) {
+		L.Util.setOptions(this, options);
+		this.clear();
+	},
+
+	clear: function() {
+		this._cachedData = null;
+		this._cachedTime = 0;
+		this._cachedBBox = {minLon: 181, minLat: 91, maxLon: -181, maxLat: -91};
+	},
+
+	get: function(minLon, minLat, maxLon, maxLat) {
+		if (this._cachedData == null) {
+			// no cached data available
+			return null;
+		}
+		if ((new Date()).getTime() - this._cachedTime > 60000*this.options.maxAge) {
+			// cached data is too old
+			this.clear();
+			return null;
+		}
+		if (minLon <= this._cachedBBox.minLon || minLat <= this._cachedBBox.minLat
+				|| maxLon >= this._cachedBBox.maxLon || maxLat >= this._cachedBBox.maxLat) {
+			// new area is outside of cached area
+			this.clear();
+			return null;
+		}
+
+		// clip cached data to bounds
+		var clippedStations = new Array();
+		var cnt = 0;
+		for (var k in this._cachedData.list) {
+			var station = this._cachedData.list[k];
+			if (station.coord.lon >= minLon && station.coord.lon <= maxLon
+					&& station.coord.lat >= minLat && station.coord.lat <= maxLat) {
+				clippedStations[k] = station;
+				cnt++;
+			}
+		}
+		return clippedStations;
+	},
+
+	set: function(data, bounds) {
+		this._cachedData = data;
+		this._cachedBBox.minLon = bounds.getWest();
+		this._cachedBBox.minLat = bounds.getSouth();
+		this._cachedBBox.maxLon = bounds.getEast();
+		this._cachedBBox.maxLat = bounds.getNorth();
+		this._cachedTime = (new Date()).getTime();
+	}
+
+});
+L.OWM.currentCache = function(options) { return new L.OWM.CurrentCache(options); };
+
 
 L.OWM.Utils = {
 
