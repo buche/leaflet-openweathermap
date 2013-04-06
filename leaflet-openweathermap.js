@@ -229,7 +229,9 @@ L.OWM.Current = L.Class.extend({
 		imageHeightStation: 25,
 		imageUrlPlane: 'http://openweathermap.org/img/s/iplane.png',
 		imageWidthPlane: 25,
-		imageHeightPlane: 25
+		imageHeightPlane: 25,
+		markerFunction: null, // user defined function for marker creation
+		popupFunction: null // user defined function for popup creation
 	},
 
 	initialize: function(options) {
@@ -362,11 +364,21 @@ L.OWM.Current = L.Class.extend({
 			// add the stations/cities as markers to the LayerGroup
 			_this._markers = new Array();
 			for (var key in stations) {
-				var marker = _this._createMarker(stations[key]);
+				var marker;
+				if (_this.options.markerFunction != null && typeof _this.options.markerFunction == 'function') {
+					marker = _this.options.markerFunction.call(_this, stations[key]);
+				} else {
+					marker = _this._createMarker(stations[key]);
+				}
+				marker.options.owmId = stations[key].id;
 				_this._layer.addLayer(marker);
 				_this._markers.push(marker);
 				if (_this.options.popup) {
-					marker.bindPopup(_this._createPopup(stations[key]));
+					if (_this.options.popupFunction != null && typeof _this.options.popupFunction == 'function') {
+						marker.bindPopup(_this.options.popupFunction.call(_this, stations[key]));
+					} else {
+						marker.bindPopup(_this._createPopup(stations[key]));
+					}
 				}
 				if (markerWithPopup != null
 						&& typeof markerWithPopup.options.owmId != 'undefined'
@@ -542,7 +554,7 @@ L.OWM.Current = L.Class.extend({
 						, popupAnchor: new L.Point(0, -10)
 						, html: this._icondivtext(station, imageData.url, imageData.width, imageData.height)
 					});
-		var marker = L.marker([station.coord.lat, station.coord.lon], {icon: icon, owmId: station.id});
+		var marker = L.marker([station.coord.lat, station.coord.lon], {icon: icon});
 		return marker;
 	},
 

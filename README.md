@@ -85,15 +85,18 @@ A lot of *options* are available to configure the behaviour of the city/station 
 * *imageUrlStation*: URL ( **'http://openweathermap.org/img/s/istation.png'** ). Image URL for stations of type unequal to 1.
 * *imageWidthStation*: Number ( **25** ). Width of image for station type unequal to 1.
 * *imageHeightStation*: Number ( **25** ). Height of image for station type unequal to 1.
+* *markerFunction*: Function ( **null** ). User defined function for marker creation. Needs one parameter for station data.
+* *popupFunction*: Function ( **null** ). User defined function for popup creation. Needs one parameter for station data.
 
-## Example
+## Simple Example 
 
-An example can be seen here: http://map.comlu.com/openweathermap/
+An example map can be seen here: http://map.comlu.com/openweathermap/
 
 Here are the most important lines:
 
 ```html
 <head>
+	<script type="text/javascript" src="leaflet.js"></script>
 	<link rel="stylesheet" type="text/css" href="leaflet-openweathermap.css" />
 	<script type="text/javascript" src="leaflet-openweathermap.js"></script>
 </head>
@@ -106,18 +109,54 @@ var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5});
 var city = L.OWM.current({intervall: 5, lang: 'de'});
 
-var map = L.map('map', {
-	center: new L.LatLng(51.5, 10), zoom: 10,
-	layers: [osm]
-});
-
+var map = L.map('map', { center: new L.LatLng(51.5, 10), zoom: 10, layers: [osm] });
 var baseMaps = { "OSM Standard": osm };
 var overlayMaps = { "Clouds": clouds, "Cities": city };
-
 var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 ```
 
-## TODO
+## Example with user provided marker/popup functions for current weather
 
-* Bugfixing
-* Complete translations for de, ru, fr (see `L.OWM.Utils.i18n[lang]`). Someone out there knowing the correct terms?
+Provide one functions for creating markers and another one for creating popups.
+Add the options *markerFunction* and *popupFunction* to your call to *L.OWM.current*.
+The data structure you get as a parameter isn't well documented at the moment. You
+get what OWM sends. Just look at the data and keep in mind that most entries are optional.
+The context (this) of the functions is the L.OWM.Current instance you created. Therefore
+you have access to options (e.g. this.options.temperatureUnit) and other attributes.
+
+```html
+<head>
+	<script type="text/javascript" src="leaflet.js"></script>
+	<link rel="stylesheet" type="text/css" href="leaflet-openweathermap.css" />
+	<script type="text/javascript" src="leaflet-openweathermap.js"></script>
+</head>
+```
+
+```js
+function myOwmMarker(data) {
+	// just a Leaflet default marker
+	return L.marker([data.coord.lat, data.coord.lon]);
+}
+
+function myOwmPopup(data) {
+	// just a Leaflet default popup with name as content
+	return L.popup().setContent(data.name);
+}
+
+var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 18, attribution: '[insert correct attribution here!]' });
+
+var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5});
+var city = L.OWM.current({intervall: 5, lang: 'de',
+			markerFunction: myOwmMarker, popupFunction: myOwmPopup});
+
+var map = L.map('map', { center: new L.LatLng(51.5, 10), zoom: 10, layers: [osm] });
+var baseMaps = { "OSM Standard": osm };
+var overlayMaps = { "Clouds": clouds, "Cities": city };
+var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+```
+
+
+## Please help me
+
+* Translations for de, ru, fr (see `L.OWM.Utils.i18n[lang]`) are incomplete. Someone out there knowing the correct terms?
