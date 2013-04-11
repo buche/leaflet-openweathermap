@@ -111,7 +111,7 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.pressure = function (options) {
 		var layer = new L.OWM.Pressure(options);
 		if (layer.options.legendImagePath == null) {
-			layer.options.legendImagePath = 'http://openweathermap.org/img/a/P0.png';
+			layer.options.legendImagePath = 'http://openweathermap.org/img/a/PN.png';
 		}
 		return layer;
 	};
