@@ -207,7 +207,8 @@ L.OWM.Current = L.Class.extend({
 		minZoom: 7,
 		intervall: 0, // intervall for rereading city/station data in minutes
 		progressControl: true, // available: true, false
-		imageLoadingUrl: 'owmloading.gif', // URl of loading image relative to HTML document
+		imageLoadingUrl: 'owmloading.gif', // URL of loading image relative to HTML document
+		imageLoadingBgUrl: null, // URL of background image for progress control
 		temperatureUnit: 'C', // available: 'K' (Kelvin), 'C' (Celsius), 'F' (Fahrenheit)
 		temperatureDigits: 1,
 		speedUnit: 'ms', // available: 'ms' (m/s), 'kmh' (km/h), 'mph' (mph)
@@ -250,9 +251,14 @@ L.OWM.Current = L.Class.extend({
 		this._tempUnits = { K: 'K', C: '°C', F: 'F'};
 		this._progressCtrl = null;
 		if (this.options.progressControl) {
-			var bgIcon = this.options.imageUrlCity.replace('{icon}', '10d');
-			if (this.options.type != 'city') {
-				var bgIcon = this.options.imageUrlStation;
+			var bgIcon;
+			if (this.options.imageLoadingBgUrl) {
+				bgIcon = this.options.imageLoadingBgUrl;
+			} else {
+				bgIcon = this.options.imageUrlCity.replace('{icon}', '10d');
+				if (this.options.type != 'city') {
+					var bgIcon = this.options.imageUrlStation;
+				}
 			}
 			this._progressCtrl = L.OWM.progressControl({
 					type: this.options.type

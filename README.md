@@ -63,6 +63,7 @@ A lot of *options* are available to configure the behaviour of the city/station 
 * *intervall*: Number ( **0** ). Time in minutes to reload city or station data. Please do not use less than 10 minutes.
 * *progressControl*: **true** or false. Whether a progress control should be used to tell the user that data is being loaded at the moment.
 * *imageLoadingUrl*: URL ( **'owmloading.gif'** ). URL of the loading image, or a path relative to the HTML document. This is important when the image is not in the same directory as the HTML document!
+* *imageLoadingBgUrl*: URL ( **null** ). URL of background image for progress control if you don't like the default one.
 * *temperatureUnit*: **'C'**, 'F', 'K'. Display temperature in Celsius, Fahrenheit or Kelvin.
 * *temperatureDigits*: Number ( **1** ). Number of decimal places for temperature.
 * *speedUnit*: **'ms'**, 'kmh' or 'mph'. Unit of wind speed (m/s, km/h or mph).
