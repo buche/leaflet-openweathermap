@@ -871,6 +871,7 @@ L.OWM.Utils = {
 			, id721: 'Haze'
 			, id731: 'Sand/Dust Whirls'
 			, id741: 'Fog'
+			, id751: 'Sand'
 
 			, id800: 'Sky is Clear'
 			, id801: 'Few Clouds'
@@ -941,6 +942,7 @@ L.OWM.Utils = {
 			, id721: 'Eingetrübt' // 'Haze'
 			, id731: 'Sand-/Staubwirbel' // 'Sand/Dust Whirls'
 			, id741: 'Nebel' // 'Fog'
+			, id751: 'Sand' // 'Sand'
 
 			, id800: 'Wolkenlos' // 'Sky is Clear'
 			, id800d: 'Sonnig' // 'Sky is Clear' at day
@@ -1013,6 +1015,7 @@ L.OWM.Utils = {
 		//	, id721: 'Haze'
 		//	, id731: 'Sand/Dust Whirls'
 		//	, id741: 'Fog'
+		//	, id751: 'Sand'
 
 			, id800: 'Ясно' // 'Sky is Clear'
 			, id801: 'Малооблачно' // 'Few Clouds'
@@ -1083,6 +1086,7 @@ L.OWM.Utils = {
 			, id721: 'Brume' // 'Haze'
 			, id731: 'Tourbillons de sable/poussière' // 'Sand/Dust Whirls'
 			, id741: 'Brouillard' // 'Fog'
+		//	, id751: 'Sand'
 
 			, id800: 'Ciel dégagé' // 'Sky is Clear'
 			, id801: 'Ciel voilé'
