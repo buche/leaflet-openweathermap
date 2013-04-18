@@ -419,6 +419,7 @@ L.OWM.Current = L.Class.extend({
 		if (markerWithPopup != null) {
 			markerWithPopup.openPopup();
 		}
+		_this.fire('owmlayeradd', {markers: _this._markers});
 	},
 
 	_getMarkerWithPopup: function(markers) {
