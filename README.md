@@ -7,6 +7,11 @@ In short: A JavaScript library for including OWM's layers and OWM's current city
 
 Feel free to flattr me if you like it: [![alttext](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/1193685/)
 
+## Demo
+
+An example map using many features of this library can be seen here: http://map.comlu.com/openweathermap/
+Its "Wind Rose" overlay is a complex example of a user defined marker to give you an idea what can be achieved by user defined functions for markers.
+
 ## License
 
 This code is licensed under [CC0](http://creativecommons.org/publicdomain/zero/1.0/ "Creative Commons Zero - Public Domain").
@@ -36,10 +41,10 @@ Here's how to initialize these TileLayers:
 Beyond standard options for Leaflet TileLayers there are additional ones:
 
 * *showLegend*: **true** or false. If true and option 'legendImagePath' is set there will be a legend image on the map.
-* *legendImagePath*: URL (set to a default image for some layers, **null** for others). URL or relative path to an image which is a legend to this layer.
+* *legendImagePath*: URL (is set to a default image for some layers, **null** for others, see below). URL or relative path to an image which is a legend to this layer.
 * *legendPosition*: **'bottomleft'**. Position of the legend images on the map. Available are standard positions for Leaflet controls ('topright', 'topleft', 'bottomright', 'bottomleft').
 
-Out of th box a legend image is only available for Pressure, Precipitation Classic, Clouds Classic and Rain Classic. Please add your own image if you need it.
+Out of the box a legend image is only available for Pressure, Precipitation Classic, Clouds Classic and Rain Classic. Please add your own image if you need it.
 
 ## Using current data for cities and stations
 
@@ -92,8 +97,6 @@ A lot of *options* are available to configure the behaviour of the city/station 
 * *cacheMaxAge*: Number ( **15** ). Maximum age in minutes for cached data before it is considered as too old.
 
 ## Simple Example 
-
-An example map can be seen here: http://map.comlu.com/openweathermap/
 
 Here are the most important lines:
 
