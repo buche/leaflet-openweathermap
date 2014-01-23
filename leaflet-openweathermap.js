@@ -341,6 +341,7 @@ L.OWM.Current = L.Class.extend({
 
 		if (this._map.getZoom() < this.options.minZoom) {
 			this.fire('owmloadingend', {type: _this.options.type});
+			this._layer.clearLayers();
 			// Info to user?
 			return;
 		}
