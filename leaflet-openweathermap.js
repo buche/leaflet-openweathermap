@@ -87,7 +87,13 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.Snow = L.OWM.extend({
 		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'snow')
 	});
-	L.OWM.snow = function (options) { return new L.OWM.Snow(options); };
+	L.OWM.snow = function (options) { 
+		var layer = new L.OWM.Snow(options);
+		if (layer.options.legendImagePath == null) {
+			layer.options.legendImagePath = 'http://openweathermap.org/img/a/SN.png';
+		}
+		return layer; 
+	};
 
 	L.OWM.Clouds = L.OWM.extend({
 		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'clouds')
@@ -124,12 +130,24 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.Temperature = L.OWM.extend({
 		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'temp')
 	});
-	L.OWM.temperature = function (options) { return new L.OWM.Temperature(options); };
+	L.OWM.temperature = function (options) { 
+		var layer = new L.OWM.Temperature(options);
+		if (layer.options.legendImagePath == null) {
+			layer.options.legendImagePath = 'http://openweathermap.org/img/a/TT.png';
+		}
+		return layer;
+	};
 
 	L.OWM.Wind = L.OWM.extend({
 		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'wind')
 	});
-	L.OWM.wind = function (options) { return new L.OWM.Wind(options); };
+	L.OWM.wind = function (options) { 
+		var layer = new L.OWM.Wind(options);
+		if (layer.options.legendImagePath == null) {
+			layer.options.legendImagePath = 'http://openweathermap.org/img/a/UV.png';
+		}
+		return layer;
+	};
 
 }());
 
@@ -323,6 +341,7 @@ L.OWM.Current = L.Class.extend({
 
 		if (this._map.getZoom() < this.options.minZoom) {
 			this.fire('owmloadingend', {type: _this.options.type});
+			this._layer.clearLayers();
 			// Info to user?
 			return;
 		}
