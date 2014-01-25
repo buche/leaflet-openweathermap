@@ -44,7 +44,7 @@ Beyond standard options for Leaflet TileLayers there are additional ones:
 * *legendImagePath*: URL (is set to a default image for some layers, **null** for others, see below). URL or relative path to an image which is a legend to this layer.
 * *legendPosition*: **'bottomleft'**. Position of the legend images on the map. Available are standard positions for Leaflet controls ('topright', 'topleft', 'bottomright', 'bottomleft').
 
-Out of the box a legend image is only available for Pressure, Precipitation Classic, Clouds Classic, Rain Classic, Snow, Temperature and Wind Speed. Please add your own image if you need some more.
+Out of the box a legend image is only available for Pressure, Precipitation Classic, Clouds Classic, Rain Classic, Snow, Temperature and Wind Speed. Please add your own images if you need some more.
 
 ## Using current data for cities and stations
 
@@ -59,7 +59,7 @@ Here's how to initialize these dynamically created layers:
 
 ### Options
 
-A lot of *options* are available to configure the behaviour of the city/station data ( **default value** is bold):
+A lot of *options* are available to configure the behaviour of the city/station data ( **default value** is bold). But don't be scared about the large number of options, you don't need to set any if you are pleased with the defaults:
 
 * *appId*: String ( **null** ). Please get a free API key (called APPID) if you're using OWM's current weather data regulary.
 * *type*: **'city'** or 'station'. Get city data or station data.
