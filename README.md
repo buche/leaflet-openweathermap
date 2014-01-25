@@ -95,6 +95,7 @@ A lot of *options* are available to configure the behaviour of the city/station 
 * *popupFunction*: Function ( **null** ). User defined function for popup creation. Needs one parameter for station data.
 * *caching*: **true** or false. Use caching of current weather data. Cached data is reloaded when it is too old or the new bounding box doesn't fit inside the cached bounding box.
 * *cacheMaxAge*: Number ( **15** ). Maximum age in minutes for cached data before it is considered as too old.
+* *keepOnMinZoom*: **false** or true. Keep or remove markers when zoom < minZoom.
 
 ## Simple Example 
 

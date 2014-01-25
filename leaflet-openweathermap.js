@@ -252,7 +252,8 @@ L.OWM.Current = L.Class.extend({
 		markerFunction: null, // user defined function for marker creation
 		popupFunction: null, // user defined function for popup creation
 		caching: true, // use caching of current weather data
-		cacheMaxAge: 15 // maximum age of cache content in minutes before it gets invalidated
+		cacheMaxAge: 15, // maximum age of cache content in minutes before it gets invalidated
+		keepOnMinZoom: false // keep or remove markers when zoom < minZoom
 	},
 
 	initialize: function(options) {
@@ -341,8 +342,9 @@ L.OWM.Current = L.Class.extend({
 
 		if (this._map.getZoom() < this.options.minZoom) {
 			this.fire('owmloadingend', {type: _this.options.type});
-			this._layer.clearLayers();
-			// Info to user?
+			if (!this.options.keepOnMinZoom) {
+				this._layer.clearLayers();
+			}
 			return;
 		}
 
