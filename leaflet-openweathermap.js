@@ -264,7 +264,7 @@ L.OWM.Current = L.Class.extend({
 		this._markers = new Array();
 		this._markedMarker = null;
 		this._map = null;
-		this._urlTemplate = 'http://api.openweathermap.org/data/2.1/find/{type}?{appId}bbox={minlon},{minlat},{maxlon},{maxlat},10';
+		this._urlTemplate = 'http://api.openweathermap.org/data/2.5/box/{type}?{appId}cnt=300&format=json&units=metric&bbox={minlon},{minlat},{maxlon},{maxlat},10';
 		this._directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW', 'N'];
 		this._msbft = [0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7, 37.0, 41.5, 46.2, 51.0, 56.1, 61.3]; // Beaufort scala
 		this._tempUnits = { K: 'K', C: '°C', F: 'F'};
@@ -620,14 +620,16 @@ L.OWM.Current = L.Class.extend({
 		return txt;
 	},
 
-	_temperatureConvert: function(tempK) {
-		var temp = tempK;
+	_temperatureConvert: function(tempC) {
+		var temp = tempC;
 		switch (this.options.temperatureUnit) {
+			case 'K':
+				temp = (tempC + 273.15);
+				break;
 			case 'C':
-				temp = (tempK-273.15);
 				break;
 			case 'F':
-				temp = (tempK*1.8-459.67);
+				temp = ((tempC + 273.15)*1.8-459.67);
 				break;
 		}
 		return temp.toFixed(this.options.temperatureDigits);
