@@ -1164,9 +1164,9 @@ L.OWM.Utils = {
 			, id503: 'Erg hevige regen'
 			, id504: 'Extreme regen'
 			, id511: 'Hagel'
-			, id520: 'Lichte motsneeuw'
-			, id521: 'Motsneeuw'
-			, id522: 'Hevige motsneeuw'
+			, id520: 'Lichte miezerregen'
+			, id521: 'Miezerregen'
+			, id522: 'Hevige miezerregen'
 
 			, id600: 'Lichte sneeuwval'
 			, id601: 'Sneeuw'
