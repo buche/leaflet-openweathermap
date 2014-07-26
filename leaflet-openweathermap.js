@@ -221,7 +221,7 @@ L.OWM.Current = L.Class.extend({
 	options: {
 		appId: null, // get your free Application ID at www.openweathermap.org
 		type: 'city', // available types: 'city', 'station'
-		lang: 'en', // available: 'en', 'de', 'ru', 'fr' (not every laguage is finished yet)
+		lang: 'en', // available: 'en', 'de', 'ru', 'fr', 'nl' (not every laguage is finished yet)
 		minZoom: 7,
 		intervall: 0, // intervall for rereading city/station data in minutes
 		progressControl: true, // available: true, false
@@ -1124,6 +1124,77 @@ L.OWM.Utils = {
 			, id904: 'Chaleur' // 'Hot'
 			, id905: 'Venteux' // 'Windy'
 			, id906: 'Grêle' // 'Hail'
+		},
+
+		nl: { //dutch translation
+			owmlinktitle: 'Details op OpenWeatherMap'
+			, temperature: 'Temperatuur'
+			, temp_minmax: 'Temp. min/max'
+			, wind: 'Wind'
+			, gust: 'Windvlaag'
+			, windforce: 'Windkracht'
+			, direction: 'Richting'
+			, rain_1h: 'Regen'
+			, humidity: 'Luchtvochtigheid'
+			, pressure: 'Luchtdruk'
+
+		// weeercondities, see http://openweathermap.org/wiki/API/Weather_Condition_Codes
+			, id200: 'Onweer met lichte regen'
+			, id201: 'Onweer met met regen'
+			, id202: 'Onweer met hevige regen'
+			, id210: 'Lichte onweersbui'
+			, id211: 'Onweersbui'
+			, id212: 'Hevig onweer'
+			, id221: 'Onregelmatige onweersbui'
+			, id230: 'Onweer met licht motregen'
+			, id231: 'Onweer met motregen'
+			, id232: 'Onweer met hevige motregen'
+
+			, id300: 'Lichte motregen'
+			, id301: 'Motregen'
+			, id302: 'Hevige motregen'
+			, id310: 'Lichte motregen / regen'
+			, id311: 'Motregen / regen'
+			, id312: 'Hevige motregen / regen'
+			, id321: 'Douche motregen'
+
+			, id500: 'Lichte regen'
+			, id501: 'Gematigde regen'
+			, id502: 'Hevige regen'
+			, id503: 'Erg hevige regen'
+			, id504: 'Extreme regen'
+			, id511: 'Hagel'
+			, id520: 'Lichte motsneeuw'
+			, id521: 'Motsneeuw'
+			, id522: 'Hevige motsneeuw'
+
+			, id600: 'Lichte sneeuwval'
+			, id601: 'Sneeuw'
+			, id602: 'Hevige sneeuwval'
+			, id611: 'Ijzel'
+			, id621: 'Douche sneeuw'
+			, id622: 'Hevige douche sneeuw'
+
+			, id701: 'Mist'
+			, id711: 'Rook'
+			, id721: 'Nevel'
+			, id731: 'Zand/stof werveling'
+			, id741: 'Mist'
+			, id751: 'Zand'
+
+			, id800: 'Onbewolkt'
+			, id801: 'Licht bewolkt'
+			, id802: 'Half bewolkt'
+			, id803: 'Overwegend bewolkt'
+			, id804: 'Bewolkt'
+
+			, id900: 'Tornado'
+			, id901: 'Tropische Storm'
+			, id902: 'Orkaan'
+			, id903: 'Koud'
+			, id904: 'Heet'
+			, id905: 'Winderig'
+			, id906: 'Hagel'
 		}
 	}
 };
