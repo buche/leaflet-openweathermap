@@ -221,9 +221,9 @@ L.OWM.Current = L.Class.extend({
 	options: {
 		appId: null, // get your free Application ID at www.openweathermap.org
 		type: 'city', // available types: 'city', 'station'
-		lang: 'en', // available: 'en', 'de', 'ru', 'fr', 'nl' (not every laguage is finished yet)
+		lang: 'en', // available: 'en', 'de', 'ru', 'fr', 'nl', 'es', 'ca' (not every language is finished yet)
 		minZoom: 7,
-		intervall: 0, // intervall for rereading city/station data in minutes
+		interval: 0, // interval for rereading city/station data in minutes
 		progressControl: true, // available: true, false
 		imageLoadingUrl: 'owmloading.gif', // URL of loading image relative to HTML document
 		imageLoadingBgUrl: null, // URL of background image for progress control
@@ -383,8 +383,8 @@ L.OWM.Current = L.Class.extend({
 				_this.fire('owmloadingend', {type: _this.options.type});
 			});
 		}
-		if (this.options.intervall && this.options.intervall > 0) {
-			this._timeoutId = window.setTimeout(function() {_this.update()}, 60000*this.options.intervall);
+		if (this.options.interval && this.options.interval > 0) {
+			this._timeoutId = window.setTimeout(function() {_this.update()}, 60000*this.options.interval);
 		}
 	},
 
@@ -1195,6 +1195,209 @@ L.OWM.Utils = {
 			, id904: 'Heet'
 			, id905: 'Winderig'
 			, id906: 'Hagel'
+		},
+
+		es: { //spanish translation
+			owmlinktitle: 'Detalles en OpenWeatherMap'
+			, temperature: 'Temperatura'
+			, temp_minmax: 'Temp. mín/máx'
+			, wind: 'Viento'
+			, gust: 'Ráfagas'
+			, windforce: 'Fuerza del viento'
+			, direction: 'Dirección'
+			, rain_1h: 'Lluvia'
+			, humidity: 'Humedad'
+			, pressure: 'Presión'
+
+		// weather conditions, see http://openweathermap.org/weather-conditions
+			// Thunderstorm
+			, id200: 'Tormenta con lluvia débil'
+			, id201: 'Tormenta con lluvia'
+			, id202: 'Tormenta con lluvia fuerte'
+			, id210: 'Tormenta débil'
+			, id211: 'Tormenta'
+			, id212: 'Tormenta fuerte'
+			, id221: 'Tormenta irregular'
+			, id230: 'Tormenta con llovizna débil'
+			, id231: 'Tormenta con llovizna'
+			, id232: 'Tormenta con llovizna fuerte'
+
+			// Drizzle
+			, id300: 'Llovizna débil'
+			, id301: 'Llovizna'
+			, id302: 'Llovizna fuerte'
+			, id310: 'Lluvia/llovizna débil'
+			, id311: 'Lluvia/llovizna'
+			, id312: 'Lluvia/llovizna fuerte'
+			, id321: 'Chubasco de llovizna'
+
+			// Rain
+			, id500: 'Lluvia débil'
+			, id501: 'Lluvia moderada'
+			, id502: 'Lluvia fuerte'
+			, id503: 'Lluvia muy fuerte'
+			, id504: 'Lluvia extrema'
+			, id511: 'Granizo'
+			, id520: 'Chubasco de lluvia débil'
+			, id521: 'Chubasco de lluvia'
+			, id522: 'Chubasco de lluvia fuerte'
+			, id531: 'Chubasco de lluvia irregular'
+
+			// Snow
+			, id600: 'Nieve débil'
+			, id601: 'Nieve'
+			, id602: 'Nieve fuerte'
+			, id611: 'Aguanieve'
+			, id612: 'Chubasco de aguanieve'
+			, id615: 'Lluvia y nieve débiles'
+			, id616: 'Lluvia y nieve'
+			, id620: 'Chubasco de nieve débil'
+			, id621: 'Chubasco de nieve'
+			, id622: 'Chubasco de nieve fuerte'
+
+			// Atmosphere
+			, id701: 'Bruma'
+			, id711: 'Humo'
+			, id721: 'Neblina'
+			, id731: 'Torbellinos de arena/polvo'
+			, id741: 'Niebla'
+			, id751: 'Arena'
+			, id761: 'Polvo'
+			, id762: 'Ceniza volcánica'
+			, id771: 'Tempestad'
+			, id781: 'Tornado'
+
+			// Clouds
+			, id800: 'Cielo despejado'
+			, id801: 'Algunas nubes'
+			, id802: 'Nubes dispersas'
+			, id803: 'Intérvalos nubosos'
+			, id804: 'Nublado'
+
+			// Extreme
+			, id900: 'Tornado'
+			, id901: 'Tormenta tropical'
+			, id902: 'Huracán'
+			, id903: 'Bajas temperaturas'
+			, id904: 'Altas temperaturas'
+			, id905: 'Ventoso'
+			, id906: 'Granizo'
+
+			// Additional
+			, id951: 'Calma'
+			, id952: 'Brisa ligera'
+			, id953: 'Brisa suave'
+			, id954: 'Brisa moderada'
+			, id955: 'Brisa fresca'
+			, id956: 'Brisa fuerte'
+			, id957: 'Viento fuerte, próximo a vendaval'
+			, id958: 'Vendaval'
+			, id959: 'Vendaval fuerte'
+			, id960: 'Tempestad'
+			, id961: 'Tempestad violenta'
+			, id962: 'Huracán'
+		},
+
+		ca: { //catalan translation
+			owmlinktitle: 'Detalls en OpenWeatherMap'
+			, temperature: 'Temperatura'
+			, temp_minmax: 'Temp. mín/màx'
+			, wind: 'Vent'
+			, gust: 'Ràfegues'
+			, windforce: 'Força del vent'
+			, direction: 'Direcció'
+			, rain_1h: 'Pluja'
+			, humidity: 'Humitat'
+			, pressure: 'Pressió'
+
+		// weather conditions, see http://openweathermap.org/weather-conditions
+			// Thunderstorm
+			, id200: 'Tempesta amb pluja feble'
+			, id201: 'Tempesta amb pluja'
+			, id202: 'Tempesta amb pluja forta'
+			, id210: 'Tempesta feble'
+			, id211: 'Tempesta'
+			, id212: 'Tempesta forta'
+			, id221: 'Tempesta irregular'
+			, id230: 'Tempesta amb plugim feble'
+			, id231: 'Tempesta amb plugim'
+			, id232: 'Tempesta amb plugim fort'
+
+			// Drizzle
+			, id300: 'Plugim feble'
+			, id301: 'Plugim'
+			, id302: 'Plugim fort'
+			, id310: 'Pluja/plugim feble'
+			, id311: 'Pluja/plugim'
+			, id312: 'Pluja/plugim fort'
+			, id321: 'Ruixat de plugim'
+
+			// Rain
+			, id500: 'Pluja feble'
+			, id501: 'Pluja moderada'
+			, id502: 'Pluja forta'
+			, id503: 'Pluja molt forta'
+			, id504: 'Pluja extrema'
+			, id511: 'Calabruix'
+			, id520: 'Ruixat de pluja feble'
+			, id521: 'Ruixat de pluja'
+			, id522: 'Ruixat de pluja fort'
+			, id531: 'Ruixat de pluja irregular'
+
+			// Snow
+			, id600: 'Neu feble'
+			, id601: 'Neu'
+			, id602: 'Neu forta'
+			, id611: 'Aiguaneu'
+			, id612: 'Ruixat de aguanieve'
+			, id615: 'Pluja i neu febles'
+			, id616: 'Pluja i neu'
+			, id620: 'Ruixat de neu feble'
+			, id621: 'Ruixat de neu'
+			, id622: 'Ruixat de neu fort'
+
+			// Atmosphere
+			, id701: 'Bruma'
+			, id711: 'Fum'
+			, id721: 'Boirina'
+			, id731: 'Torbellinos de arena/polvo'
+			, id741: 'Boira'
+			, id751: 'Sorra'
+			, id761: 'Pols'
+			, id762: 'Cendra volcànica'
+			, id771: 'Tempestat'
+			, id781: 'Tornado'
+
+			// Clouds
+			, id800: 'Cel clar'
+			, id801: 'Alguns núvols'
+			, id802: 'Núvols dispersos'
+			, id803: 'Intervals nuvolosos'
+			, id804: 'Ennuvolat'
+
+			// Extreme
+			, id900: 'Tornado'
+			, id901: 'Tempesta tropical'
+			, id902: 'Huracà'
+			, id903: 'Temperatures baixes'
+			, id904: 'Temperatures altes'
+			, id905: 'Ventós'
+			, id906: 'Calabruix'
+
+			// Additional
+			, id951: 'Calma'
+			, id952: 'Brisa lleugera'
+			, id953: 'Brisa suau'
+			, id954: 'Brisa moderada'
+			, id955: 'Brisa fresca'
+			, id956: 'Brisa forta'
+			, id957: 'Vent fort, pròxim a vendaval'
+			, id958: 'Ventada'
+			, id959: 'Ventada forta'
+			, id960: 'Tempesta'
+			, id961: 'Tempesta violenta'
+			, id962: 'Huracà'
 		}
+
 	}
 };
