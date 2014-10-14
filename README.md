@@ -63,9 +63,9 @@ A lot of *options* are available to configure the behaviour of the city/station 
 
 * *appId*: String ( **null** ). Please get a free API key (called APPID) if you're using OWM's current weather data regulary.
 * *type*: **'city'** or 'station'. Get city data or station data.
-* *lang*: **'en'**, 'de', 'ru', 'fr'. Language of popup texts. Note: not every translation is finished yet.
+* *lang*: **'en'**, 'de', 'ru', 'fr', 'es', 'ca'. Language of popup texts. Note: not every translation is finished yet.
 * *minZoom*: Number ( **7** ). Minimal zoom level for fetching city/station data. Use smaller values only at your own risk.
-* *intervall*: Number ( **0** ). Time in minutes to reload city or station data. Please do not use less than 10 minutes.
+* *interval*: Number ( **0** ). Time in minutes to reload city or station data. Please do not use less than 10 minutes. 0 no reload (default)
 * *progressControl*: **true** or false. Whether a progress control should be used to tell the user that data is being loaded at the moment.
 * *imageLoadingUrl*: URL ( **'owmloading.gif'** ). URL of the loading image, or a path relative to the HTML document. This is important when the image is not in the same directory as the HTML document!
 * *imageLoadingBgUrl*: URL ( **null** ). URL of background image for progress control if you don't like the default one.
