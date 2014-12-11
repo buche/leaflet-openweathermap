@@ -198,6 +198,9 @@ L.OWM.LegendControl = L.Control.extend({
 		var isLeft = this.options.position.indexOf('left') !== -1;
 		var cssFloat = isLeft ? 'left' : 'right';
 		for (var idx in this._legendContainer) {
+			if (isNaN(idx)) {
+				continue;
+			}
 			var imgPath = this._legendContainer[idx];
 			var item = L.DomUtil.create('div', 'owm-legend-item', this._container);
 			item.style.cssFloat = cssFloat;
