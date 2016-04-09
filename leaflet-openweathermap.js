@@ -87,12 +87,12 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.Snow = L.OWM.extend({
 		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'snow')
 	});
-	L.OWM.snow = function (options) { 
+	L.OWM.snow = function (options) {
 		var layer = new L.OWM.Snow(options);
 		if (layer.options.legendImagePath == null) {
 			layer.options.legendImagePath = 'http://openweathermap.org/img/a/SN.png';
 		}
-		return layer; 
+		return layer;
 	};
 
 	L.OWM.Clouds = L.OWM.extend({
@@ -130,7 +130,7 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.Temperature = L.OWM.extend({
 		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'temp')
 	});
-	L.OWM.temperature = function (options) { 
+	L.OWM.temperature = function (options) {
 		var layer = new L.OWM.Temperature(options);
 		if (layer.options.legendImagePath == null) {
 			layer.options.legendImagePath = 'http://openweathermap.org/img/a/TT.png';
@@ -141,7 +141,7 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.Wind = L.OWM.extend({
 		_owmtileurl: L.OWM.prototype.baseUrl.replace('{layername}', 'wind')
 	});
-	L.OWM.wind = function (options) { 
+	L.OWM.wind = function (options) {
 		var layer = new L.OWM.Wind(options);
 		if (layer.options.legendImagePath == null) {
 			layer.options.legendImagePath = 'http://openweathermap.org/img/a/UV.png';
@@ -1032,7 +1032,7 @@ L.OWM.Utils = {
 			, id600: 'Слабый снег' // 'Light Snow'
 			, id601: 'Снег' // 'Snow'
 			, id602: 'Сильный снег' // 'Heavy Snow'
-			, id611: 'Снег с дождем' //'Sleet' 
+			, id611: 'Снег с дождем' //'Sleet'
 			, id621: 'Кратковременный снег' // 'Shower Snow'
 			, id622: 'Кратковременный сильный снег' //'Heavy Shower Snow'
 
