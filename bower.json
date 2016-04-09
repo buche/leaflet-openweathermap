@@ -1,0 +1,26 @@
+{
+  "name": "leaflet-openweathermap",
+  "description": "A JavaScript library for including OpenWeatherMap's layers and OWM's current city/station data in leaflet based maps without hassle.",
+  "main": "leaflet-openweathermap.js",
+  "authors": [
+    "buche <buche@egeter.de> and other contributors"
+  ],
+  "license": "CC0-1.0",
+  "keywords": [
+    "leaflet",
+    "weather",
+    "map",
+    "openweathermap",
+    "tile",
+    "layer"
+  ],
+  "homepage": "https://github.com/buche/leaflet-openweathermap",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
