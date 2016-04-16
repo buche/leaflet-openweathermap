@@ -708,7 +708,7 @@ L.OWM.Current = L.Class.extend({
 L.OWM.current = function(options) { return new L.OWM.Current(options); };
 
 L.OWM.ProgressControl = L.Control.extend({
-	includes: L.Mixin.Events, 
+	includes: L.Mixin.Events,
 
 	options: {
 		position: "topleft",
@@ -1403,7 +1403,76 @@ L.OWM.Utils = {
 			, id960: 'Tempesta'
 			, id961: 'Tempesta violenta'
 			, id962: 'Huracà'
-		}
+		},
+		pt_br: { //brazillian translation
+			owmlinktitle: 'Detalhes em OpenWeatherMap'
+			, temperature: 'Temperatura'
+			, temp_minmax: 'Temp. min/max'
+			, wind: 'Vento'
+			, gust: 'Rajadas'
+			, windforce: 'Força do Vento'
+			, direction: 'Direção'
+			, rain_1h: 'Chuva'
+			, humidity: 'Umidade'
+			, pressure: 'Pressão'
 
+		// weather conditions, see http://openweathermap.org/wiki/API/Weather_Condition_Codes
+			, id200: 'Trovoadas com chuva fraca'
+			, id201: 'Trovoadas com chuva'
+			, id202: 'Trovoadas com chuva forte'
+			, id210: 'Trovoadas leves'
+			, id211: 'Trovoadas'
+			, id212: 'Trovoadas fortes'
+			, id221: 'Trovoadas irregulares'
+			, id230: 'Trovoadas com garoa fraca'
+			, id231: 'Trovoadas com garoa'
+			, id232: 'Trovoadas com garoa forte'
+
+			, id300: 'Garoa de fraca intensidade'
+			, id301: 'Garoa'
+			, id302: 'Garoa de forte intensidade'
+			, id310: 'Chuva com garoa de fraca intensidade'
+			, id311: 'Chuva com garoa'
+			, id312: 'Chuva com garoa de forte intensidade'
+			, id321: 'Garoa persistente'
+
+			, id500: 'Chuva fraca'
+			, id501: 'Chuva'
+			, id502: 'Chuva forte'
+			, id503: 'Chuva muito forte'
+			, id504: 'Chuva extrema'
+			, id511: 'Chuva de granizo'
+			, id520: 'Aguaceiro de chuva fraco'
+			, id521: 'Aguaceiro de chuva'
+			, id522: 'Aguaceiro de chuva forte'
+
+			, id600: 'Neve fraca'
+			, id601: 'Neve'
+			, id602: 'Neve forte'
+			, id611: 'Chuva com neve'
+			, id621: 'Aguaceiro de neve'
+			, id622: 'Aguaceiro de neve forte'
+
+			, id701: 'Névoa'
+			, id711: 'Smoke'
+			, id721: 'Bruma'
+			, id731: 'Redemoinhos de Areia/Poeira'
+			, id741: 'Neblina'
+			, id751: 'Areia'
+
+			, id800: 'Ceu está limpo'
+			, id801: 'Poucas nuvens'
+			, id802: 'Nuvens dispersas'
+			, id803: 'Cirros'
+			, id804: 'Nuvens nubladas'
+
+			, id900: 'Tornado'
+			, id901: 'Tempestade tropical'
+			, id902: 'Furacão'
+			, id903: 'Frio'
+			, id904: 'Calor'
+			, id905: 'Ventania'
+			, id906: 'Granizo'
+		}
 	}
 };
