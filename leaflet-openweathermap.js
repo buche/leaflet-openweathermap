@@ -6,7 +6,7 @@
 
 L.OWM = L.TileLayer.extend({
 	options: {
-		baseUrl: "http://{s}.tile.openweathermap.org/map/{layername}/{z}/{x}/{y}.png"
+		baseUrl: "http://{s}.tile.openweathermap.org/map/{layername}/{z}/{x}/{y}.png",
 		maxZoom: 18,
 		showLegend: true,
 		legendImagePath: null,
@@ -16,7 +16,7 @@ L.OWM = L.TileLayer.extend({
 
 	initialize: function (options) {
 		L.Util.setOptions(this, options);
-		var tileurl = options.baseUrl.replace('{layername}', this._owmLayerName);
+		var tileurl = this.options.baseUrl.replace('{layername}', this._owmLayerName);
 
 		this._map = null;
 		this._legendControl = null;
