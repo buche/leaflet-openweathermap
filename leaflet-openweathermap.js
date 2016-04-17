@@ -858,7 +858,7 @@ L.OWM.Utils = {
 			, humidity: 'Humidity'
 			, pressure: 'Pressure'
 
-		// weather conditions, see http://openweathermap.org/wiki/API/Weather_Condition_Codes
+		// weather conditions, see http://openweathermap.org/weather-conditions
 			, id200: 'Thunderstorm with Light Rain'
 			, id201: 'Thunderstorm with Rain'
 			, id202: 'Thunderstorm with Heavy Rain'
@@ -929,7 +929,7 @@ L.OWM.Utils = {
 			, humidity: 'Luftfeuchtigkeit'
 			, pressure: 'Luftdruck'
 
-		// Wetterbedingungen, siehe http://openweathermap.org/wiki/API/Weather_Condition_Codes
+		// Wetterbedingungen, siehe http://openweathermap.org/weather-conditions
 			, id200: 'Gewitter mit leichtem Regen' // 'Thunderstorm with Light Rain'
 			, id201: 'Gewitter mit Regen' // 'Thunderstorm with Rain'
 			, id202: 'Gewitter mit Starkregen' // 'Thunderstorm with Heavy Rain'
@@ -1002,7 +1002,7 @@ L.OWM.Utils = {
 			, humidity: 'Влажность'
 			, pressure: 'Давление'
 
-		// weather conditions, see http://openweathermap.org/wiki/API/Weather_Condition_Codes
+		// weather conditions, see http://openweathermap.org/weather-conditions
 			, id200: 'Гроза с легким дождем' // 'Thunderstorm with Light Rain'
 			, id201: 'Гроза с дождем' // 'Thunderstorm with Rain'
 			, id202: 'Гроза с ливнем' // 'Thunderstorm with Heavy Rain'
@@ -1073,7 +1073,7 @@ L.OWM.Utils = {
 			, humidity: 'Humidité'
 			, pressure: 'Pression'
 
-		// Les conditions météorologiques, voir http://openweathermap.org/wiki/API/Weather_Condition_Codes
+		// Les conditions météorologiques, voir http://openweathermap.org/weather-conditions
 			, id200: 'Orage avec pluie légère' // 'Thunderstorm with Light Rain'
 			, id201: 'Orage avec pluie' // 'Thunderstorm with Rain'
 			, id202: 'Orage avec fortes précipitations' // 'Thunderstorm with Heavy Rain'
@@ -1144,7 +1144,7 @@ L.OWM.Utils = {
 			, humidity: 'Luchtvochtigheid'
 			, pressure: 'Luchtdruk'
 
-		// weeercondities, see http://openweathermap.org/wiki/API/Weather_Condition_Codes
+		// weeercondities, see http://openweathermap.org/weather-conditions
 			, id200: 'Onweer met lichte regen'
 			, id201: 'Onweer met met regen'
 			, id202: 'Onweer met hevige regen'
@@ -1416,7 +1416,7 @@ L.OWM.Utils = {
 			, humidity: 'Umidade'
 			, pressure: 'Pressão'
 
-		// weather conditions, see http://openweathermap.org/wiki/API/Weather_Condition_Codes
+		// weather conditions, see http://openweathermap.org/weather-conditions
 			, id200: 'Trovoadas com chuva fraca'
 			, id201: 'Trovoadas com chuva'
 			, id202: 'Trovoadas com chuva forte'
