@@ -1,0 +1,23 @@
+.leaflet-languageselector-title {
+	font-size: larger;
+	font-weight: bold;
+	display: block;
+	position: relative;
+}
+
+.leaflet-languageselector-float-left {
+	float: left;
+}
+
+.leaflet-languageselector-mleft {
+	margin-left: 7px;
+}
+
+.leaflet-languageselector-langdiv {
+	cursor: pointer; 
+}
+
+.leaflet-languageselector-clearfloat {
+	clear: all;
+}
+
