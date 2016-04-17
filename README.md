@@ -9,12 +9,14 @@ Feel free to flattr me if you like it: [![alttext](http://api.flattr.com/button/
 
 ## Demo
 
-An example map using many features of this library can be seen here: http://map.comlu.com/openweathermap/
-Its "Wind Rose" overlay is a complex example of a user defined marker to give you an idea what can be achieved by user defined functions for markers.
+An example map using many features of this library can be seen at http://openweathermap.map.comlu.com/ .
+Its "Wind Rose" overlay is an example of a user defined marker to give you an idea what can be achieved by user defined functions for markers.
+This map is available in the example directory.
 
 ## License
 
 This code is licensed under [CC0](http://creativecommons.org/publicdomain/zero/1.0/ "Creative Commons Zero - Public Domain").
+Some files in the example directory may have other licences (e.g. leaflet.js - see leaflet.license, leaflet.markercluster.js - MIT, excanvas.js - Apache license).
 
 ## Using TileLayers
 
@@ -96,6 +98,7 @@ A lot of *options* are available to configure the behaviour of the city/station 
 * *caching*: **true** or false. Use caching of current weather data. Cached data is reloaded when it is too old or the new bounding box doesn't fit inside the cached bounding box.
 * *cacheMaxAge*: Number ( **15** ). Maximum age in minutes for cached data before it is considered as too old.
 * *keepOnMinZoom*: **false** or true. Keep or remove markers when zoom < minZoom.
+* *baseUrl*: Defaults to "http://{s}.tile.openweathermap.org/map/{layername}/{z}/{x}/{y}.png" - only change it when you know what you're doing.
 
 ## Simple Example 
 
