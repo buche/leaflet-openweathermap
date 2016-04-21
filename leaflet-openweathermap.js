@@ -1454,7 +1454,7 @@ L.OWM.Utils = {
 			, id622: 'Aguaceiro de neve forte'
 
 			, id701: 'Névoa'
-			, id711: 'Smoke'
+			, id711: 'Fumaça'
 			, id721: 'Bruma'
 			, id731: 'Redemoinhos de Areia/Poeira'
 			, id741: 'Neblina'
@@ -1464,7 +1464,7 @@ L.OWM.Utils = {
 			, id801: 'Poucas nuvens'
 			, id802: 'Nuvens dispersas'
 			, id803: 'Cirros'
-			, id804: 'Nuvens nubladas'
+			, id804: 'Nublado'
 
 			, id900: 'Tornado'
 			, id901: 'Tempestade tropical'
