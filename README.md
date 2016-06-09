@@ -9,7 +9,7 @@ Feel free to flattr me if you like it: [![alttext](http://api.flattr.com/button/
 
 ## Demo
 
-An example map using many features of this library can be seen at http://openweathermap.map.comlu.com/ .
+An example map using many features of this library can be seen at http://openweathermap.map.comlu.com/ (which is an alias for http://map.comlu.com/openweathermap/ ).
 Its "Wind Rose" overlay is an example of a user defined marker to give you an idea what can be achieved by user defined functions for markers.
 This map is available in the example directory.
 
