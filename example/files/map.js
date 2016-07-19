@@ -214,16 +214,6 @@ function myOwmPopup(data) {
  */
 function initMap() {
 
-	var mapquestUrl = "http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png",
-		mapquestSubDomains = ["otile1","otile2","otile3","otile4"],
-		mapquestAttrib = 'Data, imagery and map information provided by '
-			+ '<a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>, '
-			+ '<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and '
-			+ '<a href="http://wiki.openstreetmap.org/wiki/Contributors" target="_blank">contributors</a>. '
-			+ 'Data: <a href="http://wiki.openstreetmap.org/wiki/Open_Database_License" target="_blank">ODbL</a>, '
-			+ 'Map: <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC-BY-SA</a>',
-		mapquest = new L.TileLayer(mapquestUrl, {maxZoom: 18, attribution: mapquestAttrib, subdomains: mapquestSubDomains});
-
 	var standard = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 18,
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>'
@@ -273,7 +263,7 @@ function initMap() {
 
 	map = L.map('map', {
 		center: new L.LatLng(lat, lon), zoom: zoom,
-		layers: [mapquest]
+		layers: [standard]
 	});
 	map.attributionControl.setPrefix("");
 
@@ -295,8 +285,7 @@ function initMap() {
 	}));
 
 	var baseMaps = {
-		"Mapquest Open": mapquest
-		, "OSM Standard": standard
+		"OSM Standard": standard
 	//	, "ESRI Aerial": esri
 	};
 
