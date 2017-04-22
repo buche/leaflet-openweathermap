@@ -406,7 +406,7 @@ L.OWM.Current = L.Class.extend({
 				return;
 			}
 			// only use stations/cities having a minimum distance of some pixels on the map
-			var pt = _this._map.latLngToLayerPoint(new L.LatLng(stat.coord.lat, stat.coord.lon));
+			var pt = _this._map.latLngToLayerPoint(new L.LatLng(stat.coord.Lat, stat.coord.Lon));
 			var key = '' + (Math.round(pt.x/_this.options.clusterSize)) + "_" + (Math.round(pt.y/_this.options.clusterSize));
 			if (!stations[key] || parseInt(stations[key].rang) < parseInt(stat.rang)) {
 				stations[key] = stat;
@@ -524,7 +524,7 @@ L.OWM.Current = L.Class.extend({
 				}
 			}
 		}
-		if (typeof station.rain != 'undefined' && typeof station.rain['1h'] != 'undefined') {
+		if (station.rain != null && typeof station.rain != 'undefined' && typeof station.rain['1h'] != 'undefined') {
 			txt += '<div class="owm-popup-detail">'
 				+ this.i18n('rain_1h', 'Rain (1h)')
 				+ ': ' + station.rain['1h'] + '&nbsp;ml</div>';
@@ -612,7 +612,7 @@ L.OWM.Current = L.Class.extend({
 						, popupAnchor: new L.Point(0, -10)
 						, html: this._icondivtext(station, imageData.url, imageData.width, imageData.height)
 					});
-		var marker = L.marker([station.coord.lat, station.coord.lon], {icon: icon});
+		var marker = L.marker([station.coord.Lat, station.coord.Lon], {icon: icon});
 		return marker;
 	},
 
@@ -798,8 +798,8 @@ L.OWM.CurrentCache = L.Class.extend({
 		var cnt = 0;
 		for (var k in this._cachedData.list) {
 			var station = this._cachedData.list[k];
-			if (station.coord.lon >= minLon && station.coord.lon <= maxLon
-					&& station.coord.lat >= minLat && station.coord.lat <= maxLat) {
+			if (station.coord.Lon >= minLon && station.coord.Lon <= maxLon
+					&& station.coord.Lat >= minLat && station.coord.Lat <= maxLat) {
 				clippedStations[k] = station;
 				cnt++;
 			}
