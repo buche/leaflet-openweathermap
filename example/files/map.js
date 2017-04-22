@@ -223,23 +223,24 @@ function initMap() {
 		maxZoom: 18, attribution: 'Tiles © Esri — Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 	});
 
-	var clouds = L.OWM.clouds({opacity: 0.8, legendImagePath: 'files/NT2.png'});
-	var cloudscls = L.OWM.cloudsClassic({opacity: 0.5});
-	var precipitation = L.OWM.precipitation( {opacity: 0.5} );
-	var precipitationcls = L.OWM.precipitationClassic({opacity: 0.5});
-	var rain = L.OWM.rain({opacity: 0.5});
-	var raincls = L.OWM.rainClassic({opacity: 0.5});
-	var snow = L.OWM.snow({opacity: 0.5});
-	var pressure = L.OWM.pressure({opacity: 0.4});
-	var pressurecntr = L.OWM.pressureContour({opacity: 0.5});
-	var temp = L.OWM.temperature({opacity: 0.5});
-	var wind = L.OWM.wind({opacity: 0.5});
-
-	var localLang = getLocalLanguage();
-
 	// Get your own free OWM API key at http://www.openweathermap.org/appid - please do not re-use mine!
 	// You don't need an API key for this to work at the moment, but this will change eventually.
 	var OWM_API_KEY = '06aac0fd4ba239a20d824ef89602f311';
+
+	var clouds = L.OWM.clouds({opacity: 0.8, legendImagePath: 'files/NT2.png', appId: OWM_API_KEY});
+	var cloudscls = L.OWM.cloudsClassic({opacity: 0.5, appId: OWM_API_KEY});
+	var precipitation = L.OWM.precipitation( {opacity: 0.5, appId: OWM_API_KEY} );
+	var precipitationcls = L.OWM.precipitationClassic({opacity: 0.5, appId: OWM_API_KEY});
+	var rain = L.OWM.rain({opacity: 0.5, appId: OWM_API_KEY});
+	var raincls = L.OWM.rainClassic({opacity: 0.5, appId: OWM_API_KEY});
+	var snow = L.OWM.snow({opacity: 0.5, appId: OWM_API_KEY});
+	var pressure = L.OWM.pressure({opacity: 0.4, appId: OWM_API_KEY});
+	var pressurecntr = L.OWM.pressureContour({opacity: 0.5, appId: OWM_API_KEY});
+	var temp = L.OWM.temperature({opacity: 0.5, appId: OWM_API_KEY});
+	var wind = L.OWM.wind({opacity: 0.5, appId: OWM_API_KEY});
+
+	var localLang = getLocalLanguage();
+
 	var city = L.OWM.current({intervall: 15, imageLoadingUrl: 'leaflet/owmloading.gif', lang: localLang, minZoom: 5,
 			appId: OWM_API_KEY});
 	var station = L.OWM.current({type: 'station', intervall: 15, imageLoadingUrl: 'leaflet/owmloading.gif', lang: localLang,

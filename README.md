@@ -24,24 +24,25 @@ OWM offers some TileLayers: Clouds, Clouds Classic, Precipitation, Precipitation
 
 ### Initializing TileLayers
 
-Here's how to initialize these TileLayers:
+Here's how to initialize these TileLayers (an AppId is mandatory now):
 
-* var clouds = L.OWM.clouds();
-* var cloudscls = L.OWM.cloudsClassic();
-* var precipitation = L.OWM.precipitation();
-* var precipitationcls = L.OWM.precipitationClassic();
-* var rain = L.OWM.rain();
-* var raincls = L.OWM.rainClassic();
-* var snow = L.OWM.snow();
-* var pressure = L.OWM.pressure();
-* var pressurecntr = L.OWM.pressureContour();
-* var temp = L.OWM.temperature();
-* var wind = L.OWM.wind();
+* var clouds = L.OWM.clouds({appId: 'YOUR_OWN_APPID'});
+* var cloudscls = L.OWM.cloudsClassic({appId: 'YOUR_OWN_APPID'});
+* var precipitation = L.OWM.precipitation({appId: 'YOUR_OWN_APPID'});
+* var precipitationcls = L.OWM.precipitationClassic({appId: 'YOUR_OWN_APPID'});
+* var rain = L.OWM.rain({appId: 'YOUR_OWN_APPID'});
+* var raincls = L.OWM.rainClassic({appId: 'YOUR_OWN_APPID'});
+* var snow = L.OWM.snow({appId: 'YOUR_OWN_APPID'});
+* var pressure = L.OWM.pressure({appId: 'YOUR_OWN_APPID'});
+* var pressurecntr = L.OWM.pressureContour({appId: 'YOUR_OWN_APPID'});
+* var temp = L.OWM.temperature({appId: 'YOUR_OWN_APPID'});
+* var wind = L.OWM.wind({appId: 'YOUR_OWN_APPID'});
 
 ### Options for TileLayers
 
 Beyond standard options for Leaflet TileLayers there are additional ones:
 
+* *appId*: An AppId is mandatory. Get it at http://www.openweathermap.org/appid
 * *showLegend*: **true** or false. If true and option 'legendImagePath' is set there will be a legend image on the map.
 * *legendImagePath*: URL (is set to a default image for some layers, **null** for others, see below). URL or relative path to an image which is a legend to this layer.
 * *legendPosition*: **'bottomleft'**. Position of the legend images on the map. Available are standard positions for Leaflet controls ('topright', 'topleft', 'bottomright', 'bottomleft').
@@ -116,7 +117,7 @@ Here are the most important lines:
 var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 18, attribution: '[insert correct attribution here!]' });
 
-var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5});
+var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5, appId: 'YOUR_OWN_APPID'});
 var city = L.OWM.current({intervall: 15, lang: 'de'});
 
 var map = L.map('map', { center: new L.LatLng(51.5, 10), zoom: 10, layers: [osm] });
@@ -156,7 +157,7 @@ function myOwmPopup(data) {
 var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 18, attribution: '[insert correct attribution here!]' });
 
-var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5});
+var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5, appId: 'YOUR_OWN_APPID'});
 var city = L.OWM.current({intervall: 15, lang: 'de',
 			markerFunction: myOwmMarker, popupFunction: myOwmPopup});
 

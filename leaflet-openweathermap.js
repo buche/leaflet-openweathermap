@@ -6,6 +6,7 @@
 
 L.OWM = L.TileLayer.extend({
 	options: {
+		appId: 'GET_YOUR_OWN_APPID', /* pass your own AppId as parameter when creating the layer. Get your own AppId at http://www.openweathermap.org/appid */
 		baseUrl: "http://{s}.tile.openweathermap.org/map/{layername}/{z}/{x}/{y}.png",
 		maxZoom: 18,
 		showLegend: true,
@@ -17,6 +18,7 @@ L.OWM = L.TileLayer.extend({
 	initialize: function (options) {
 		L.Util.setOptions(this, options);
 		var tileurl = this.options.baseUrl.replace('{layername}', this._owmLayerName);
+		tileurl = tileurl + '?appid=' + this.options.appId;
 
 		this._map = null;
 		this._legendControl = null;
