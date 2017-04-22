@@ -99,7 +99,7 @@ function foundLocation(position) {
 function myWindroseMarker(data) {
 	var content = '<canvas id="id_' + data.id + '" width="50" height="50"></canvas>';
 	var icon = L.divIcon({html: content, iconSize: [50,50], className: 'owm-div-windrose'});
-	return L.marker([data.coord.lat, data.coord.lon], {icon: icon, clickable: false});
+	return L.marker([data.coord.Lat, data.coord.Lon], {icon: icon, clickable: false});
 }
 
 /**
@@ -198,7 +198,7 @@ function windroseAdded(e) {
  */
 function myOwmMarker(data) {
 	// just a Leaflet default marker
-	return L.marker([data.coord.lat, data.coord.lon]);
+	return L.marker([data.coord.Lat, data.coord.Lon]);
 }
 
 /**
