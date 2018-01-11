@@ -1,15 +1,15 @@
 /**
  * This file is licensed under Creative Commons Zero (CC0)
- * http://creativecommons.org/publicdomain/zero/1.0/
+ * https://creativecommons.org/publicdomain/zero/1.0/
  *
- * Author: http://www.openstreetmap.org/user/Zartbitter
+ * Author: https://www.openstreetmap.org/user/Zartbitter
  */
 
 var map;
 
 /**
  * Add or replace a parameter (with value) in the given URL.
- * By Adil Malik, http://stackoverflow.com/questions/1090948/change-url-parameters/10997390#10997390
+ * By Adil Malik, https://stackoverflow.com/questions/1090948/change-url-parameters/10997390#10997390
  * @param String url the URL
  * @param String param the parameter
  * @param String paramVal the value of the parameter
@@ -214,16 +214,16 @@ function myOwmPopup(data) {
  */
 function initMap() {
 
-	var standard = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	var standard = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 18,
-		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>'
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>'
 		});
 
-	var esri = L.tileLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.jpg", {
+	var esri = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.jpg", {
 		maxZoom: 18, attribution: 'Tiles © Esri — Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 	});
 
-	// Get your own free OWM API key at http://www.openweathermap.org/appid - please do not re-use mine!
+	// Get your own free OWM API key at https://www.openweathermap.org/appid - please do not re-use mine!
 	// You don't need an API key for this to work at the moment, but this will change eventually.
 	var OWM_API_KEY = '06aac0fd4ba239a20d824ef89602f311';
 
@@ -247,7 +247,7 @@ function initMap() {
 			appId: OWM_API_KEY /* , markerFunction: myOwmMarker, popupFunction: myOwmPopup */ });
 	var windrose = L.OWM.current({intervall: 15, imageLoadingUrl: 'leaflet/owmloading.gif', lang: localLang, minZoom: 4,
 			appId: OWM_API_KEY, markerFunction: myWindroseMarker, popup: false, clusterSize: 50,
-   			imageLoadingBgUrl: 'http://openweathermap.org/img/w0/iwind.png' });
+   			imageLoadingBgUrl: 'https://openweathermap.org/img/w0/iwind.png' });
 	windrose.on('owmlayeradd', windroseAdded, windrose); // Add an event listener to get informed when windrose layer is ready
 
 	var useGeolocation = true;
@@ -308,14 +308,6 @@ function initMap() {
 
 	var layerControl = L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(map);
 	map.addControl(new L.Control.Permalink({layers: layerControl, useAnchor: false, position: 'bottomright'}));
-
-	map.addControl(L.flattrButton({
-		autosubmit: true,
-		flattrUid: 'kranich',
-		flattrUrl: 'https://github.com/buche/leaflet-openweathermap',
-		buttonType: 'countercompact',
-		popout: false
-	}));
 
 	// patch layerControl to add some titles
 	var patch = L.DomUtil.create('div', 'owm-layercontrol-header');

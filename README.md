@@ -1,11 +1,11 @@
 # OpenWeatherMap for Leaflet based maps
 
 ## Description
-[OpenWeatherMap](http://openweathermap.org/) (OWM) is a service providing weather related data, visualizing it using an OpenLayers based map. This is a Leaflet based script providing easy access to OWM's features for Leaflet based maps.
+[OpenWeatherMap](https://openweathermap.org/) (OWM) is a service providing weather related data, visualizing it using an OpenLayers based map. This is an independant Leaflet based script providing easy access to OWM's features for Leaflet based maps.
 
-In short: A JavaScript library for including OWM's layers and OWM's current city/station data in leaflet based maps without hassle.
+In short: An independant JavaScript library for including OWM's layers and OWM's current city/station data in Leaflet based maps without hassle.
 
-Feel free to flattr me if you like it: [![alttext](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/1193685/)
+Feel free to flattr me if you like it: [![alttext](https://button.flattr.com/flattr-badge-large.png)](https://flattr.com/thing/1193685/)
 
 ## Demo
 
@@ -15,8 +15,8 @@ This map is available in the example directory, too.
 
 ## License
 
-This code is licensed under [CC0](http://creativecommons.org/publicdomain/zero/1.0/ "Creative Commons Zero - Public Domain").
-Some files in the example directory may have other licences (e.g. leaflet.js - see leaflet.license, leaflet.markercluster.js - MIT, excanvas.js - Apache license).
+This code is licensed under [CC0](https://creativecommons.org/publicdomain/zero/1.0/ "Creative Commons Zero - Public Domain").
+Some files in the example directory may have other licences (e.g. leaflet.js - see leaflet.license, leaflet.markercluster.js - MIT, excanvas.js - Apache license) - please have a look at the files if needed.
 
 ## Using TileLayers
 
@@ -24,7 +24,7 @@ OWM offers some TileLayers: Clouds, Clouds Classic, Precipitation, Precipitation
 
 ### Initializing TileLayers
 
-Here's how to initialize these TileLayers (an AppId is mandatory now):
+Here's how to initialize these TileLayers (an AppId is mandatory now, get your own [here](https://www.openweathermap.org/appid)):
 
 * var clouds = L.OWM.clouds({appId: 'YOUR_OWN_APPID'});
 * var cloudscls = L.OWM.cloudsClassic({appId: 'YOUR_OWN_APPID'});
@@ -42,7 +42,7 @@ Here's how to initialize these TileLayers (an AppId is mandatory now):
 
 Beyond standard options for Leaflet TileLayers there are additional ones:
 
-* *appId*: An AppId is mandatory. Get it at http://www.openweathermap.org/appid
+* *appId*: An AppId is mandatory. Get it at https://www.openweathermap.org/appid
 * *showLegend*: **true** or false. If true and option 'legendImagePath' is set there will be a legend image on the map.
 * *legendImagePath*: URL (is set to a default image for some layers, **null** for others, see below). URL or relative path to an image which is a legend to this layer.
 * *legendPosition*: **'bottomleft'**. Position of the legend images on the map. Available are standard positions for Leaflet controls ('topright', 'topleft', 'bottomright', 'bottomleft').
@@ -85,13 +85,13 @@ A lot of *options* are available to configure the behaviour of the city/station 
 * *showTempMinMax*: **true** or false. Whether to show temperature min/max.
 * *useLocalTime*: **true** or false. Whether to use local time or UTC for the timestamp.
 * *clusterSize*: Number ( **150** ). If some stations are too close to each other, they are hidden. In an area of the size clusterSize pixels * clusterSize pixels only one city or one station is allowed.
-* *imageUrlCity*: URL ( **'http://openweathermap.org/img/w/{icon}.png'** ). URL template for weather condition images of cities. {icon} will be replaced by the icon property of city's data. See http://openweathermap.org/img/w/ for some standard images.
+* *imageUrlCity*: URL ( **'https://openweathermap.org/img/w/{icon}.png'** ). URL template for weather condition images of cities. {icon} will be replaced by the icon property of city's data. See http://openweathermap.org/img/w/ for some standard images.
 * *imageWidth*: Number ( **50** ). Width of city's weather condition image.
 * *imageHeight*: Number ( **50** ). Height of city's weather condition image.
-* *imageUrlPlane*: URL ( **'http://openweathermap.org/img/s/iplane.png'** ). Image URL for stations of type 1.
+* *imageUrlPlane*: URL ( **'https://openweathermap.org/img/s/iplane.png'** ). Image URL for stations of type 1.
 * *imageWidthPlane*: Number ( **25** ). Width of image for station type 1.
 * *imageHeightPlane*: Number ( **25** ). Height of image for station type 1.
-* *imageUrlStation*: URL ( **'http://openweathermap.org/img/s/istation.png'** ). Image URL for stations of type unequal to 1.
+* *imageUrlStation*: URL ( **'https://openweathermap.org/img/s/istation.png'** ). Image URL for stations of type unequal to 1.
 * *imageWidthStation*: Number ( **25** ). Width of image for station type unequal to 1.
 * *imageHeightStation*: Number ( **25** ). Height of image for station type unequal to 1.
 * *markerFunction*: Function ( **null** ). User defined function for marker creation. Needs one parameter for station data.
@@ -99,7 +99,7 @@ A lot of *options* are available to configure the behaviour of the city/station 
 * *caching*: **true** or false. Use caching of current weather data. Cached data is reloaded when it is too old or the new bounding box doesn't fit inside the cached bounding box.
 * *cacheMaxAge*: Number ( **15** ). Maximum age in minutes for cached data before it is considered as too old.
 * *keepOnMinZoom*: **false** or true. Keep or remove markers when zoom < minZoom.
-* *baseUrl*: Defaults to "http://{s}.tile.openweathermap.org/map/{layername}/{z}/{x}/{y}.png" - only change it when you know what you're doing.
+* *baseUrl*: Defaults to "https://{s}.tile.openweathermap.org/map/{layername}/{z}/{x}/{y}.png" - only change it when you know what you're doing.
 
 ## Simple Example 
 
@@ -114,7 +114,7 @@ Here are the most important lines:
 ```
 
 ```js
-var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 18, attribution: '[insert correct attribution here!]' });
 
 var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5, appId: 'YOUR_OWN_APPID'});
@@ -154,7 +154,7 @@ function myOwmPopup(data) {
 	return L.popup().setContent(data.name);
 }
 
-var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 18, attribution: '[insert correct attribution here!]' });
 
 var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5, appId: 'YOUR_OWN_APPID'});
