@@ -317,10 +317,10 @@ function initMap() {
 	patch.innerHTML = getI18n('layers', localLang); // 'TileLayers';
 	layerControl._form.children[2].parentNode.insertBefore(patch, layerControl._form.children[2]);
 	patch = L.DomUtil.create('div', 'leaflet-control-layers-separator');
-	layerControl._form.children[3].children[0].parentNode.insertBefore(patch, layerControl._form.children[3].children[layerControl._form.children[3].children.length-3]);
+	layerControl._form.children[3].children[0].parentNode.insertBefore(patch, layerControl._form.children[3].children[layerControl._form.children[3].children.length-2]);
 	patch = L.DomUtil.create('div', 'owm-layercontrol-header');
 	patch.innerHTML = getI18n('current', localLang); // 'Current Weather';
-	layerControl._form.children[3].children[0].parentNode.insertBefore(patch, layerControl._form.children[3].children[layerControl._form.children[3].children.length-3]);
+	layerControl._form.children[3].children[0].parentNode.insertBefore(patch, layerControl._form.children[3].children[layerControl._form.children[3].children.length-2]);
 	patch = L.DomUtil.create('div', 'owm-layercontrol-header');
 	patch.innerHTML = getI18n('maps', localLang); // 'Maps';
 	layerControl._form.children[0].parentNode.insertBefore(patch, layerControl._form.children[0]);
