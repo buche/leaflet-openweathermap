@@ -243,8 +243,6 @@ function initMap() {
 
 	var city = L.OWM.current({intervall: 15, imageLoadingUrl: 'leaflet/owmloading.gif', lang: localLang, minZoom: 5,
 			appId: OWM_API_KEY});
-	var station = L.OWM.current({type: 'station', intervall: 15, imageLoadingUrl: 'leaflet/owmloading.gif', lang: localLang,
-			appId: OWM_API_KEY /* , markerFunction: myOwmMarker, popupFunction: myOwmPopup */ });
 	var windrose = L.OWM.current({intervall: 15, imageLoadingUrl: 'leaflet/owmloading.gif', lang: localLang, minZoom: 4,
 			appId: OWM_API_KEY, markerFunction: myWindroseMarker, popup: false, clusterSize: 50,
    			imageLoadingBgUrl: 'https://openweathermap.org/img/w0/iwind.png' });
@@ -303,7 +301,6 @@ function initMap() {
 	overlayMaps[getI18n('pressure', localLang)] = pressure;
 	overlayMaps[getI18n('presscont', localLang)] = pressurecntr;
 	overlayMaps[getI18n('city', localLang) + " (min Zoom 5)"] = city;
-	overlayMaps[getI18n('station', localLang) + " (min Zoom 7)"] = station;
 	overlayMaps[getI18n('windrose', localLang)] = windrose;
 
 	var layerControl = L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(map);

@@ -1,5 +1,5 @@
 /**
- * A JavaScript library for using OpenWeatherMap's layers and OWM's city/station data for leaflet based maps without hassle.
+ * A JavaScript library for using OpenWeatherMap's layers and OWM's city data for leaflet based maps without hassle.
  * License: CC0 (Creative Commons Zero), see https://creativecommons.org/publicdomain/zero/1.0/
  * Project page: https://github.com/buche/leaflet-openweathermap/
  */
@@ -220,16 +220,16 @@ L.OWM.LegendControl = L.Control.extend({
 });
 
 /**
- * Layer for current weather (cities and stations).
+ * Layer for current weather of cities.
  */
 L.OWM.Current = L.Layer.extend({
 
 	options: {
 		appId: null, // get your free Application ID at www.openweathermap.org
-		type: 'city', // available types: 'city', 'station'
+		type: 'city', // available types: 'city'. 'station' is not supported any more
 		lang: 'en', // available: 'en', 'de', 'ru', 'fr', 'nl', 'es', 'ca' (not every language is finished yet)
 		minZoom: 7,
-		interval: 0, // interval for rereading city/station data in minutes
+		interval: 0, // interval for rereading city data in minutes
 		progressControl: true, // available: true, false
 		imageLoadingUrl: 'owmloading.gif', // URL of loading image relative to HTML document
 		imageLoadingBgUrl: null, // URL of background image for progress control
@@ -396,14 +396,14 @@ L.OWM.Current = L.Layer.extend({
 
 	_processRequestedData: function(_this, data) {
 
-		// read all stations/cities
+		// read all cities
 		var stations = {};
 		for (var i in data) {
 			var stat = data[i];
 			if (!_this._map) { // maybe layer is gone while we are looping here
 				return;
 			}
-			// only use stations/cities having a minimum distance of some pixels on the map
+			// only use cities having a minimum distance of some pixels on the map
 			var pt = _this._map.latLngToLayerPoint(new L.LatLng(stat.coord.Lat, stat.coord.Lon));
 			var key = '' + (Math.round(pt.x/_this.options.clusterSize)) + "_" + (Math.round(pt.y/_this.options.clusterSize));
 			if (!stations[key] || parseInt(stations[key].rang) < parseInt(stat.rang)) {
@@ -421,7 +421,7 @@ L.OWM.Current = L.Layer.extend({
 		}
 		_this._layer.clearLayers();
 
-		// add the stations/cities as markers to the LayerGroup
+		// add the cities as markers to the LayerGroup
 		_this._markers = new Array();
 		for (var key in stations) {
 			var marker;

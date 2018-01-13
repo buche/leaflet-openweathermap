@@ -31,7 +31,6 @@ function getI18n(key, lang) {
 			, presscont: 'Pressure Contour'
 
 			, city: 'Cities'
-			, station: 'Stations'
 			, windrose: 'Wind Rose'
 		}
 		, de: {
@@ -52,7 +51,6 @@ function getI18n(key, lang) {
 			, presscont: 'Isobaren'
 
 			, city: 'Städte'
-			, station: 'Stationen'
 			, windrose: 'Windrose'
 		}
 		, fr: {
@@ -73,7 +71,6 @@ function getI18n(key, lang) {
 			, presscont: 'Isobare'
 
 			, city: 'Villes'
-			, station: 'Stations'
 			, windrose: 'Boussole'
 		}
 		, ru: {
@@ -94,7 +91,6 @@ function getI18n(key, lang) {
 			, presscont: 'изоба́ра'
 
 			, city: 'города'
-			, station: 'станции'
 			, windrose: 'направление ветра'
 		}
 		, nl: {
@@ -115,7 +111,6 @@ function getI18n(key, lang) {
 			, presscont: 'Isobare'
 
 			, city: 'Steden'
-			, station: 'Stations'
 			, windrose: 'Wind roos'
 		}
 	};
