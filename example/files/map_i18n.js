@@ -112,6 +112,26 @@ function getI18n(key, lang) {
 
 			, city: 'Steden'
 			, windrose: 'Wind roos'
+		},
+		pt_br: {
+			  maps: 'Mapas'
+			, layers: 'Camadas'
+			, current: 'Meteorologia atual'
+
+			, clouds: 'Núvens'
+			, cloudscls: 'Núvens (clássico)'
+			, precipitation: 'Precipitação'
+			, precipitationcls: 'Precipitação (clássico)'
+			, rain: 'Chuva'
+			, raincls: 'Chuva (clássico)'
+			, snow: 'Neve'
+			, temp: 'Temperatura'
+			, windspeed: 'Velocidade do Vento'
+			, pressure: 'Pressão Atmosférica'
+			, presscont: 'Pressão Atmosférica (linhas)'
+
+			, city: 'Cidadees'
+			, windrose: 'Rosa dos ventos'
 		}
 	};
 
