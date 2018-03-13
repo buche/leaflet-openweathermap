@@ -130,7 +130,7 @@ function getI18n(key, lang) {
 			, pressure: 'Pressão Atmosférica'
 			, presscont: 'Pressão Atmosférica (linhas)'
 
-			, city: 'Cidadees'
+			, city: 'Cidades'
 			, windrose: 'Rosa dos ventos'
 		}
 	};
