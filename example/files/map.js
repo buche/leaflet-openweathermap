@@ -210,6 +210,21 @@ function myOwmPopup(data) {
 }
 
 /**
+ * Toggle scroll wheel behaviour.
+ */
+function toggleWheel(localLang) {
+	if (map.scrollWheelZoom._enabled) {
+		map.scrollWheelZoom.disable();
+		document.getElementById('wheelimg').src = 'files/ScrollWheelDisabled20.png';
+		document.getElementById('wheeltxt').innerHTML = getI18n('scrollwheel', localLang) + ' ' + getI18n('off', localLang);
+	} else {
+		map.scrollWheelZoom.enable();
+		document.getElementById('wheelimg').src = 'files/ScrollWheel20.png';
+		document.getElementById('wheeltxt').innerHTML = getI18n('scrollwheel', localLang) + ' ' + getI18n('on', localLang);
+	}
+}
+
+/**
  * Initialize the map.
  */
 function initMap() {
@@ -324,6 +339,15 @@ function initMap() {
 	patch = L.DomUtil.create('div', 'owm-layercontrol-header');
 	patch.innerHTML = getI18n('maps', localLang); // 'Maps';
 	layerControl._form.children[0].parentNode.insertBefore(patch, layerControl._form.children[0]);
+
+	patch = L.DomUtil.create('div', 'leaflet-control-layers-separator');
+	layerControl._form.children[0].parentNode.insertBefore(patch, null);
+	patch = L.DomUtil.create('div', 'owm-layercontrol-header');
+	patch.innerHTML = getI18n('prefs', localLang); // 'Preferences';
+	layerControl._form.children[0].parentNode.insertBefore(patch, null);
+	patch = L.DomUtil.create('div', '');
+	patch.innerHTML = '<div id="wheeldiv" onClick="toggleWheel(\'' + localLang + '\')"><img id="wheelimg" src="files/ScrollWheel20.png" align="middle" > <span id="wheeltxt">' + getI18n('scrollwheel', localLang) + ' ' + getI18n('on', localLang) + '</span></div>';
+	layerControl._form.children[0].parentNode.insertBefore(patch, null);
 
 	if (useGeolocation && typeof navigator.geolocation != "undefined") {
 		navigator.geolocation.getCurrentPosition(foundLocation);

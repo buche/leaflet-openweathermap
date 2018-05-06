@@ -32,6 +32,11 @@ function getI18n(key, lang) {
 
 			, city: 'Cities'
 			, windrose: 'Wind Rose'
+
+			, prefs: 'Preferences'
+			, scrollwheel: 'Scrollwheel'
+			, on: 'on'
+			, off: 'off'
 		}
 		, de: {
 			  maps: 'Karten'
@@ -52,6 +57,11 @@ function getI18n(key, lang) {
 
 			, city: 'Städte'
 			, windrose: 'Windrose'
+
+			, prefs: 'Einstellungen'
+			, scrollwheel: 'Scrollrad'
+			, on: 'an'
+			, off: 'aus'
 		}
 		, fr: {
 			  maps: 'Carte'
@@ -72,6 +82,11 @@ function getI18n(key, lang) {
 
 			, city: 'Villes'
 			, windrose: 'Boussole'
+
+			, prefs: 'Paramètres'
+			, scrollwheel: 'Molette'
+			, on: 'allumé'
+			, off: 'éteint'
 		}
 		, ru: {
 			  maps: 'карта'
@@ -92,6 +107,11 @@ function getI18n(key, lang) {
 
 			, city: 'города'
 			, windrose: 'направление ветра'
+
+			, prefs: 'настройки'
+			, scrollwheel: 'колесо прокрутки'
+			, on: 'вкл'
+			, off: 'выкл'
 		}
 		, nl: {
 			  maps: 'Kaarten'
@@ -112,6 +132,11 @@ function getI18n(key, lang) {
 
 			, city: 'Steden'
 			, windrose: 'Wind roos'
+
+			, prefs: 'Instellingen'
+			, scrollwheel: 'Muis wieltje'
+			, on: 'aan'
+			, off: 'uit'
 		},
 		pt_br: {
 			  maps: 'Mapas'
@@ -132,6 +157,11 @@ function getI18n(key, lang) {
 
 			, city: 'Cidades'
 			, windrose: 'Rosa dos ventos'
+
+			, prefs: 'Configurações'
+			, scrollwheel: 'Rodinha do mouse'
+			, on: 'ligado'
+			, off: 'desligado'
 		}
 	};
 
