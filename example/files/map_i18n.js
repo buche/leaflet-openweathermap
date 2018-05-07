@@ -38,6 +38,31 @@ function getI18n(key, lang) {
 			, on: 'on'
 			, off: 'off'
 		}
+		, it: {
+			  maps: 'Mappe'
+			, layers: 'Livello Tile'
+			, current: 'Meteo Corrente'
+
+			, clouds: 'Nuvole'
+			, cloudscls: 'Nuvole (classico)'
+			, precipitation: 'Precipitazioni'
+			, precipitationcls: 'Precipitazioni (classico)'
+			, rain: 'Pioggia'
+			, raincls: 'Pioggia (classico)'
+			, snow: 'Neve'
+			, temp: 'Temperatura'
+			, windspeed: 'Velocità del Vento'
+			, pressure: 'Pressione'
+			, presscont: 'Contorno Pressione'
+
+			, city: 'Città'
+			, windrose: 'Rosa dei Venti'
+
+			, prefs: 'Preferenze'
+			, scrollwheel: 'Scrollwheel'
+			, on: 'on'
+			, off: 'off'
+		}
 		, de: {
 			  maps: 'Karten'
 			, layers: 'Ebenen'
@@ -203,7 +228,7 @@ function getLocalLanguage() {
 	}
 
 	// Use only supported languages, defaults to 'en'
-	if (lang != 'en' && lang != 'de' && lang != 'fr' && lang != 'ru' && lang != 'nl' && lang != 'ca' && lang != 'es' && lang != 'pt_br') {
+	if (lang != 'en' && lang != 'it' && lang != 'de' && lang != 'fr' && lang != 'ru' && lang != 'nl' && lang != 'ca' && lang != 'es' && lang != 'pt_br') {
 		lang = 'en';
 	}
 	return lang;
