@@ -40,7 +40,7 @@ function getI18n(key, lang) {
 		}
 		, it: {
 			  maps: 'Mappe'
-			, layers: 'Maschere Meteo'
+			, layers: 'Livelli Meteo'
 			, current: 'Meteo Corrente'
 
 			, clouds: 'Nuvole'
