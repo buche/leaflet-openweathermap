@@ -162,6 +162,31 @@ function getI18n(key, lang) {
 			, scrollwheel: 'Rodinha do mouse'
 			, on: 'ligado'
 			, off: 'desligado'
+		},
+		fa: {
+		    maps: 'نقشه ها'
+			, layers: 'لایه ها'
+			, current: 'آب و هوای کنونی'
+
+			, clouds: 'ابر ها'
+			, cloudscls: 'ابر ها(کلاسیک)'
+			, precipitation: 'بارش'
+			, precipitationcls: 'بارش(کلاسیک)'
+			, rain: 'باران'
+			, raincls: 'باران(کلاسیک)'
+			, snow: 'برف'
+			, temp: 'دما'
+			, windspeed: 'سرعت باد'
+			, pressure: 'فشار '
+			, presscont: 'پربند فشار'
+
+			, city: 'شهرها'
+			, windrose: 'گلباد'
+
+			, prefs: 'Preferences'
+			, scrollwheel: 'اسکرول ماوس'
+			, on: 'روشن'
+			, off: 'خاموش'
 		}
 	};
 
