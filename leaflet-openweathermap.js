@@ -918,15 +918,15 @@ L.OWM.Utils = {
 		
 		it: {
 		owmlinktitle: 'Dettagli su OpenWeatherMap'
-		, temperatura: 'Temperatura'
+		, temperature: 'Temperatura'
 		, temp_minmax: 'Temp. min / max '
-		, vento: 'Vento'
-		, raffica: 'Raffica'
-		, forza del vento: 'Forza del vento'
-		, direzione: 'Direzione'
-		, pioggia_1h: 'Pioggia'
-		, umidità: 'Umidità'
-		, pressione: 'Pressione'
+		, wind: 'Vento'
+		, gust: 'Raffica'
+		, windforce: 'Forza del vento'
+		, direction: 'Direzione'
+		, rain_1h: 'Pioggia'
+		, humidity: 'Umidità'
+		, pressure: 'Pressione'
 		
 		// condizioni meteorologiche, consultare https://openweathermap.org/weather-conditions
 		// Temporale
