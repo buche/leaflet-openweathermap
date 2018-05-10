@@ -291,6 +291,7 @@ function initMap() {
 			L.langObject('en', 'English', 'mapicons/en.png')
 		,	L.langObject('de', 'Deutsch', 'mapicons/de.png')
 		,	L.langObject('fr', 'Français', 'mapicons/fr.png')
+		,	L.langObject('it', 'Italiano', 'mapicons/it.png')
 		,	L.langObject('es', 'Español', 'mapicons/es.png')
 		,	L.langObject('ca', 'Català', 'mapicons/catalonia.png')
 		,	L.langObject('ru', 'Русский', 'mapicons/ru.png')
