@@ -1,11 +1,13 @@
 # OpenWeatherMap for Leaflet based maps
 
+## END OF LIFE
+**This project is no longer maintained.**
+If you like to continue this project, just fork it and go on. If you drop me a note maybe I'll add a prominent link to your fork here in this readme.
+
 ## Description
 [OpenWeatherMap](https://openweathermap.org/) (OWM) is a service providing weather related data, visualizing it using an OpenLayers based map. This is an independant Leaflet based script providing easy access to OWM's features for Leaflet based maps.
 
 In short: An independant JavaScript library for including OWM's layers and OWM's current city data in Leaflet based maps without hassle.
-
-Feel free to flattr me if you like it: [![alttext](https://button.flattr.com/flattr-badge-large.png)](https://flattr.com/thing/1193685/)
 
 ## Demo
 

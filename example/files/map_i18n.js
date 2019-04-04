@@ -188,6 +188,56 @@ function getI18n(key, lang) {
 			, on: 'ligado'
 			, off: 'desligado'
 		},
+		es: {
+			  maps: 'Mapas'
+			, layers: 'Láminas'
+			, current: 'Tiempo actual'
+
+			, clouds: 'Nubes'
+			, cloudscls: 'Nubes (classic)'
+			, precipitation: 'Precipitaciones'
+			, precipitationcls: 'Precipitaciones (classic)'
+			, rain: 'llover'
+			, raincls: 'llover (classic)'
+			, snow: 'Nevada'
+			, temp: 'Temperatura'
+			, windspeed: 'Velocidad del viento'
+			, pressure: 'Presión atmosférica'
+			, presscont: 'Isobaras'
+
+			, city: 'Urbes'
+			, windrose: 'Tarjeta brújula'
+
+			, prefs: 'Preferencias'
+			, scrollwheel: 'Rueda de desplazamiento'
+			, on: 'encendido'
+			, off: 'apagado'
+		},
+		ca: {
+			  maps: 'Mapas'
+			, layers: 'Láminas'
+			, current: 'Tiempo actual'
+
+			, clouds: 'Nubes'
+			, cloudscls: 'Nubes (classic)'
+			, precipitation: 'Precipitaciones'
+			, precipitationcls: 'Precipitaciones (classic)'
+			, rain: 'llover'
+			, raincls: 'llover (classic)'
+			, snow: 'Nevada'
+			, temp: 'Temperatura'
+			, windspeed: 'Velocidad del viento'
+			, pressure: 'Presión atmosférica'
+			, presscont: 'Isobaras'
+
+			, city: 'Urbes'
+			, windrose: 'Tarjeta brújula'
+
+			, prefs: 'Preferencias'
+			, scrollwheel: 'Rueda de desplazamiento'
+			, on: 'encendido'
+			, off: 'apagado'
+		},
 		fa: {
 		    maps: 'نقشه ها'
 			, layers: 'لایه ها'
