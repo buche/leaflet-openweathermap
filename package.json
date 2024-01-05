@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/Ashri024/leaflet-openweathermap/issues"
   },
-  "homepage": "https://github.com/Ashri024/leaflet-openweathermap",
+
   "dependencies": {
     "leaflet": "~0.7.0"
   }
