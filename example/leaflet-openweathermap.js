@@ -14,7 +14,7 @@ L.OWM = L.TileLayer.extend({
 		legendPosition: 'bottomleft',
 		attribution: 'Weather from <a href="https://openweathermap.org/" alt="World Map and worldwide Weather Forecast online">OpenWeatherMap</a>'
 	},
-console.log(L.OWM);
+
 	initialize: function (options) {
 		L.Util.setOptions(this, options);
 		var tileurl = this.options.baseUrl.replace('{layername}', this._owmLayerName);
