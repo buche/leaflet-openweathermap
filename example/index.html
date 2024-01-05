@@ -11,18 +11,20 @@
 	<script src="leaflet/Permalink.js"></script>
 	<script src="leaflet/Permalink.Layer.js"></script>
 	<script src="leaflet/Permalink.Overlay.js"></script>
-	<script src="./leaflet-openweathermap.js"></script>
 	<link rel="stylesheet" type="text/css" href="leaflet/leaflet-languageselector.css" />
 	<script src="leaflet/leaflet-languageselector.js"></script>
 	<script src="files/map_i18n.js"></script>
 	<script src="files/map.js"></script>
 </head>
 <body>
+	
+	<input type="search" name="location" id="search" placeholder="Search City">
+	<button id="btn">Search</button>
 	<div id="map"></div>
+	<script src="./leaflet-openweathermap.js"></script>
+	
 	<script>
 		initMap();
-			
-		
 	</script>
 </body>
 </html>

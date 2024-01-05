@@ -1,3 +1,17 @@
+#search{
+	padding: 0.5rem;
+	position: absolute;
+    z-index: 9999;
+    left: 4%;
+    top: 2%;
+}
+#btn{
+	padding: 0.5rem;
+    position: absolute;
+    z-index: 9999;
+    left: 16%;
+    top: 2%;
+}
 .owm-icondiv {
 	width: 50px;
 	opacity: 0.7;

@@ -3,6 +3,29 @@
  * License: CC0 (Creative Commons Zero), see https://creativecommons.org/publicdomain/zero/1.0/
  * Project page: https://github.com/buche/leaflet-openweathermap/
  */
+const search= document.getElementById('search');
+const btn= document.getElementById('btn');
+search.addEventListener('keypress',(event)=>{
+	if(event.key == "Enter"){
+		btn.click();
+	}
+});
+let lat=0;
+let lon=0;
+btn.addEventListener('click', () => {
+	let city = search.value;
+	fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=faf70f7374045db9ec71f5ecfdc10eb4`).then(response => response.json())
+	.then(data => {
+		lat = data[0].lat;
+		lon = data[0].lon;
+		map.flyTo([lat, lon], 13, { duration: 0.5 });
+	}).catch(err => {console.log("Entered city doesnt exists")
+	alert("The city doesn't exist");
+		search.value="";
+}
+	);
+	
+});
 
 L.OWM = L.TileLayer.extend({
 	options: {

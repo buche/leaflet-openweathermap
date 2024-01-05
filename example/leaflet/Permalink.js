@@ -1,5 +1,5 @@
 L.Control.Permalink = L.Control.extend({
-	includes: L.Mixin.Events, 
+	includes: L.Evented.prototype,
 
 	options: {
 		position: "bottomleft",
