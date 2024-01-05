@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/buche/leaflet-openweathermap.git"
+    "url": "https://github.com/Ashri024/leaflet-openweathermap.git"
   },
   "keywords": [
     "leaflet",
@@ -21,9 +21,9 @@
   "author": "buche <buche@egeter.de> and other contributors",
   "license": "CC0-1.0",
   "bugs": {
-    "url": "https://github.com/buche/leaflet-openweathermap/issues"
+    "url": "https://github.com/Ashri024/leaflet-openweathermap/issues"
   },
-  "homepage": "https://github.com/buche/leaflet-openweathermap",
+  "homepage": "https://github.com/Ashri024/leaflet-openweathermap",
   "dependencies": {
     "leaflet": "~0.7.0"
   }
